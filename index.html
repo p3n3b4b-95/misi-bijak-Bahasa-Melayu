@@ -1,131 +1,773 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#65c8df">
-  <meta name="description" content="Game Bahasa Melayu Pemulihan Khas: vokal, KV, KVK, padanan gambar, susun huruf dan ayat mudah.">
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#7fdcff"
+  >
+
+  <meta
+    name="description"
+    content="Misi Bijak Bahasa Melayu — permainan pembelajaran interaktif untuk murid Pemulihan Khas."
+  >
+
   <title>Misi Bijak Bahasa Melayu</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="js/questions.js" defer></script>
-  <script src="js/core.js" defer></script>
-  <script src="js/app.js" defer></script>
+
+  <link
+    rel="stylesheet"
+    href="css/styles.css"
+  >
 </head>
+
+
 <body>
-  <a class="skip-link" href="#main">Terus ke permainan</a>
-  <div class="cloud cloud-one" aria-hidden="true"></div>
-  <div class="cloud cloud-two" aria-hidden="true"></div>
 
-  <header class="topbar">
-    <button class="brand" id="brandHome" type="button" aria-label="Kembali ke menu utama">
-      <img src="assets/logo.svg" alt="" width="52" height="52">
-      <span>Misi Bijak BM</span>
-    </button>
-    <div class="top-actions">
-      <button class="pill icon-button" id="soundToggle" type="button" aria-pressed="true" title="Hidup atau matikan bunyi">🔊 <span>Bunyi</span></button>
-      <div class="pill" id="totalStars" aria-label="Jumlah bintang">⭐ 0</div>
-    </div>
-  </header>
+  <!-- =======================================================
+       BACKGROUND DECORATION
+       ======================================================= -->
 
-  <main id="main" class="shell">
-    <section id="homeScreen" class="screen" aria-labelledby="homeTitle">
-      <div class="hero card">
-        <div class="hero-copy">
-          <p class="eyebrow">Belajar • Main • Berjaya</p>
-          <h1 id="homeTitle">Misi Bijak<br><span>Bahasa Melayu!</span></h1>
-          <p class="hero-text">Jelajah Pulau Bahasa bersama Mimi dan Bobo. Kumpul bintang sambil membaca!</p>
-          <label class="name-label" for="studentName">Nama murid</label>
-          <div class="start-row">
-            <input id="studentName" class="name-input" maxlength="30" autocomplete="name" placeholder="Contoh: Aina">
-            <button class="button button-primary" id="quickStart" type="button">Mula misi <span aria-hidden="true">🚀</span></button>
-          </div>
+  <div
+    class="world-background"
+    aria-hidden="true"
+  >
+    <div class="cloud cloud-one">☁️</div>
+    <div class="cloud cloud-two">☁️</div>
+    <div class="cloud cloud-three">☁️</div>
+
+    <div class="floating-star star-one">⭐</div>
+    <div class="floating-star star-two">✨</div>
+    <div class="floating-star star-three">⭐</div>
+
+    <div class="rainbow-decoration">🌈</div>
+  </div>
+
+
+  <!-- =======================================================
+       APP
+       ======================================================= -->
+
+  <main
+    id="app"
+    class="app-shell"
+  >
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="topbar">
+
+      <button
+        id="brandHome"
+        class="brand"
+        type="button"
+        aria-label="Kembali ke halaman utama"
+      >
+
+        <span
+          class="brand-mascot"
+          aria-hidden="true"
+        >
+          🌟
+        </span>
+
+        <span class="brand-text">
+          <strong>Misi Bijak</strong>
+          <small>Bahasa Melayu</small>
+        </span>
+
+      </button>
+
+
+      <div class="topbar-actions">
+
+        <div
+          id="totalStars"
+          class="star-counter"
+          aria-label="Jumlah bintang"
+        >
+          ⭐ 0
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <img src="assets/mascots.svg" alt="" width="480" height="360">
-        </div>
+
+
+        <button
+          id="soundToggle"
+          class="icon-button"
+          type="button"
+          aria-pressed="true"
+          aria-label="Hidup atau matikan bunyi"
+        >
+          🔊 Bunyi
+        </button>
+
       </div>
 
-      <div class="dashboard-row">
-        <div class="progress-card card">
-          <div class="rank-icon" id="rankIcon">🌱</div>
-          <div>
-            <p class="mini-label">Tahap kamu</p>
-            <h2 id="rankName">Tunas Bahasa</h2>
-            <p id="rankHint">Kumpul 80 bintang untuk naik tahap.</p>
-          </div>
-        </div>
-        <button class="reset-button" id="resetProgress" type="button">↻ Set semula kemajuan</button>
-      </div>
+    </header>
 
-      <section class="missions" aria-labelledby="missionsTitle">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Pilih permainan</p>
-            <h2 id="missionsTitle">Enam misi menanti kamu</h2>
-          </div>
-          <span class="mission-count">8 soalan / misi</span>
+
+
+    <!-- =====================================================
+         HOME SCREEN
+         ===================================================== -->
+
+    <section
+      id="homeScreen"
+      class="screen home-screen"
+    >
+
+
+      <!-- HERO -->
+
+      <section class="hero-card">
+
+        <div
+          class="hero-decoration hero-sun"
+          aria-hidden="true"
+        >
+          ☀️
         </div>
-        <div class="mission-grid" id="missionGrid"></div>
+
+
+        <div
+          class="hero-decoration hero-rainbow"
+          aria-hidden="true"
+        >
+          🌈
+        </div>
+
+
+        <div class="hero-content">
+
+          <div class="hero-copy">
+
+            <div class="eyebrow">
+              🎮 Belajar sambil bermain
+            </div>
+
+
+            <h1>
+              Misi Bijak
+              <span>Bahasa Melayu!</span>
+            </h1>
+
+
+            <p class="hero-description">
+              Jom kenal huruf, baca perkataan dan kumpul
+              bintang bersama kawan-kawan!
+            </p>
+
+
+            <div class="student-box">
+
+              <label for="studentName">
+                Nama murid
+              </label>
+
+              <input
+                id="studentName"
+                class="student-input"
+                type="text"
+                maxlength="30"
+                autocomplete="off"
+                placeholder="Tulis nama kamu"
+              >
+
+            </div>
+
+
+            <button
+              id="quickStart"
+              class="button button-primary button-large"
+              type="button"
+            >
+              🚀 Mula Bermain
+            </button>
+
+          </div>
+
+
+
+          <!-- HERO ILLUSTRATION -->
+
+          <div
+            class="hero-visual"
+            aria-hidden="true"
+          >
+
+            <div class="hero-bubble bubble-one">
+              A
+            </div>
+
+            <div class="hero-bubble bubble-two">
+              B
+            </div>
+
+            <div class="hero-bubble bubble-three">
+              C
+            </div>
+
+
+            <div class="hero-character hero-boy">
+              👦🏻
+            </div>
+
+            <div class="hero-book">
+              📚
+            </div>
+
+            <div class="hero-character hero-girl">
+              👧🏻
+            </div>
+
+
+            <div class="hero-ground">
+              🌼 🌱 🌼
+            </div>
+
+          </div>
+
+        </div>
+
       </section>
-    </section>
 
-    <section id="gameScreen" class="screen hidden" aria-labelledby="missionTitle">
-      <div class="game-card card">
-        <div class="game-toolbar">
-          <button class="button button-soft" id="exitGame" type="button">← Menu</button>
-          <div class="mission-badge" id="missionBadge"><span id="missionIcon">🔤</span><span id="missionTitle">Misi</span></div>
-          <div class="game-stats">
-            <span class="pill" id="questionCount">1 / 8</span>
-            <span class="pill" id="gameScore">⭐ 0</span>
-          </div>
-        </div>
-        <div class="progress-track" aria-label="Kemajuan misi"><div id="progressBar"></div></div>
 
-        <div class="question-area">
-          <p class="instruction" id="instruction">Pilih jawapan yang betul.</p>
-          <h2 class="question" id="questionText"></h2>
-          <div class="picture-stage" id="pictureStage" role="img" aria-label="Ilustrasi soalan">
-            <span id="pictureEmoji" aria-hidden="true">📚</span>
-            <span class="picture-label" id="pictureLabel"></span>
-          </div>
-          <div id="interaction" class="interaction"></div>
-          <p class="feedback" id="feedback" aria-live="polite"></p>
-          <div class="game-buttons">
-            <button class="button button-soft" id="listenButton" type="button">🔊 Dengar</button>
-            <button class="button button-primary hidden" id="nextButton" type="button">Seterusnya →</button>
-          </div>
+
+      <!-- PLAYER PROGRESS -->
+
+      <section
+        class="player-card"
+        aria-label="Tahap pemain"
+      >
+
+        <div
+          id="rankIcon"
+          class="rank-icon"
+          aria-hidden="true"
+        >
+          🌱
         </div>
+
+
+        <div class="rank-copy">
+
+          <span class="section-kicker">
+            Tahap Kamu
+          </span>
+
+          <h2 id="rankName">
+            Pengembara Vokal
+          </h2>
+
+          <p id="rankHint">
+            Main permainan untuk mengumpul bintang.
+          </p>
+
+        </div>
+
+
+        <div
+          class="rank-stars"
+          aria-hidden="true"
+        >
+          ⭐ ⭐ ⭐
+        </div>
+
+      </section>
+
+
+
+      <!-- MISSIONS -->
+
+      <section class="missions-section">
+
+        <header class="section-heading">
+
+          <div>
+
+            <span class="section-kicker">
+              🗺️ Dunia Pembelajaran
+            </span>
+
+            <h2>
+              Pilih Misi Kamu
+            </h2>
+
+            <p>
+              Setiap misi mempunyai cabaran yang berbeza.
+            </p>
+
+          </div>
+
+        </header>
+
+
+        <div
+          id="missionGrid"
+          class="mission-grid"
+          aria-live="polite"
+        >
+          <!-- Dibina oleh app.js -->
+        </div>
+
+      </section>
+
+
+
+      <!-- TIPS -->
+
+      <section class="helper-card">
+
+        <div
+          class="helper-character"
+          aria-hidden="true"
+        >
+          🦉
+        </div>
+
+        <div>
+          <strong>Tip Bijak</strong>
+
+          <p>
+            Tekan butang 🔊 jika kamu mahu mendengar perkataan.
+          </p>
+        </div>
+
+      </section>
+
+
+
+      <!-- RESET -->
+
+      <div class="home-footer">
+
+        <button
+          id="resetProgress"
+          class="text-button danger-link"
+          type="button"
+        >
+          ↻ Reset kemajuan
+        </button>
+
       </div>
+
     </section>
 
-    <section id="resultScreen" class="screen hidden" aria-labelledby="resultTitle">
-      <div class="result-card card">
-        <div class="result-burst" id="resultIcon" aria-hidden="true">🏆</div>
-        <p class="eyebrow">Misi selesai</p>
-        <h1 id="resultTitle">Syabas, <span id="resultName">Adik</span>!</h1>
-        <p class="result-score" id="resultScore">0 / 80 mata</p>
-        <div class="stars-earned" id="starsEarned" aria-label="Bintang diperoleh"></div>
-        <p id="resultMessage"></p>
+
+
+    <!-- =====================================================
+         GAME SCREEN
+         ===================================================== -->
+
+    <section
+      id="gameScreen"
+      class="screen game-screen hidden"
+    >
+
+      <section class="game-panel">
+
+
+        <!-- GAME TOP -->
+
+        <div class="game-header">
+
+          <button
+            id="exitGame"
+            class="round-button"
+            type="button"
+            aria-label="Keluar permainan"
+          >
+            ←
+          </button>
+
+
+          <div class="mission-identity">
+
+            <span
+              id="missionIcon"
+              class="current-mission-icon"
+              aria-hidden="true"
+            >
+              🌈
+            </span>
+
+            <div>
+
+              <small>
+                Misi Sekarang
+              </small>
+
+              <strong id="missionTitle">
+                Huruf Vokal
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="game-status">
+
+            <span
+              id="questionCount"
+              class="status-pill"
+            >
+              1 / 10
+            </span>
+
+            <span
+              id="gameScore"
+              class="status-pill score-pill"
+            >
+              ⭐ 0
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- PROGRESS -->
+
+        <div
+          class="progress-track"
+          aria-hidden="true"
+        >
+
+          <div
+            id="progressBar"
+            class="progress-value"
+          ></div>
+
+        </div>
+
+
+
+        <!-- GAME CONTENT -->
+
+        <div class="game-content">
+
+
+          <!-- LEFT / VISUAL -->
+
+          <div class="game-visual-column">
+
+            <div
+              id="pictureStage"
+              class="picture-stage"
+              role="img"
+              aria-label="Gambar soalan"
+            >
+
+              <div
+                class="picture-decoration picture-star"
+                aria-hidden="true"
+              >
+                ⭐
+              </div>
+
+              <div
+                class="picture-decoration picture-cloud"
+                aria-hidden="true"
+              >
+                ☁️
+              </div>
+
+
+              <span
+                id="pictureEmoji"
+                class="picture-emoji"
+                aria-hidden="true"
+              >
+                📚
+              </span>
+
+
+              <strong
+                id="pictureLabel"
+                class="picture-label"
+              ></strong>
+
+            </div>
+
+
+
+            <button
+              id="listenButton"
+              class="button button-listen"
+              type="button"
+            >
+              🔊 Dengar Perkataan
+            </button>
+
+          </div>
+
+
+
+          <!-- RIGHT / QUESTION -->
+
+          <div class="question-card">
+
+            <div class="question-badge">
+              ✨ Cabaran Kamu
+            </div>
+
+
+            <h2
+              id="questionText"
+              class="question-text"
+            >
+              Pilih jawapan yang betul.
+            </h2>
+
+
+            <p
+              id="instruction"
+              class="instruction"
+            >
+              Lihat gambar dan pilih jawapan.
+            </p>
+
+
+            <div
+              id="interaction"
+              class="interaction"
+            >
+              <!-- app.js -->
+            </div>
+
+
+            <div
+              id="feedback"
+              class="feedback"
+              role="status"
+              aria-live="polite"
+            ></div>
+
+
+            <div class="game-footer-actions">
+
+              <button
+                id="nextButton"
+                class="button button-primary hidden"
+                type="button"
+              >
+                Seterusnya
+                <span aria-hidden="true">
+                  ➜
+                </span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RESULT SCREEN
+         ===================================================== -->
+
+    <section
+      id="resultScreen"
+      class="screen result-screen hidden"
+    >
+
+      <section class="result-card">
+
+
+        <div
+          class="result-celebration"
+          aria-hidden="true"
+        >
+          ✨ ⭐ 🎉 ⭐ ✨
+        </div>
+
+
+        <div
+          id="resultIcon"
+          class="result-icon"
+          aria-hidden="true"
+        >
+          🏆
+        </div>
+
+
+        <span class="result-kicker">
+          Misi Selesai!
+        </span>
+
+
+        <h1>
+          Syabas,
+          <span id="resultName">
+            Adik
+          </span>!
+        </h1>
+
+
+        <p
+          id="resultMessage"
+          class="result-message"
+        >
+          Kamu telah menyelesaikan misi.
+        </p>
+
+
+
+        <div class="result-score-card">
+
+          <span>
+            Markah
+          </span>
+
+          <strong id="resultScore">
+            0 / 100 mata
+          </strong>
+
+        </div>
+
+
+
+        <div class="result-stars">
+
+          <span>
+            Bintang diperoleh
+          </span>
+
+          <strong id="starsEarned">
+            ☆☆☆
+          </strong>
+
+        </div>
+
+
+
         <div class="result-actions">
-          <button class="button button-primary" id="playAgain" type="button">Main lagi</button>
-          <button class="button button-soft" id="resultHome" type="button">Pilih misi</button>
+
+          <button
+            id="playAgain"
+            class="button button-primary"
+            type="button"
+          >
+            🔄 Main Lagi
+          </button>
+
+
+          <button
+            id="resultHome"
+            class="button button-soft"
+            type="button"
+          >
+            🏠 Pilih Misi
+          </button>
+
         </div>
-      </div>
+
+      </section>
+
     </section>
+
   </main>
 
-  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
-  <div class="confirm-overlay hidden" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
-    <div class="confirm-box card">
-      <div class="confirm-emoji">🌈</div>
-      <h2 id="confirmTitle">Set semula kemajuan?</h2>
-      <p>Semua bintang dan rekod misi pada peranti ini akan dipadam.</p>
-      <div class="result-actions">
-        <button class="button button-danger" id="confirmReset" type="button">Ya, set semula</button>
-        <button class="button button-soft" id="cancelReset" type="button">Batal</button>
+
+
+  <!-- =======================================================
+       RESET MODAL
+       ======================================================= -->
+
+  <div
+    id="confirmOverlay"
+    class="modal-overlay hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="resetTitle"
+  >
+
+    <div class="modal-card">
+
+      <div
+        class="modal-icon"
+        aria-hidden="true"
+      >
+        🧸
       </div>
+
+
+      <h2 id="resetTitle">
+        Reset kemajuan?
+      </h2>
+
+
+      <p>
+        Semua bintang dan rekod terbaik pada peranti ini
+        akan dipadam.
+      </p>
+
+
+      <div class="modal-actions">
+
+        <button
+          id="cancelReset"
+          class="button button-soft"
+          type="button"
+        >
+          Batal
+        </button>
+
+
+        <button
+          id="confirmReset"
+          class="button button-danger"
+          type="button"
+        >
+          Ya, Reset
+        </button>
+
+      </div>
+
     </div>
+
   </div>
+
+
+
+  <!-- =======================================================
+       CONFETTI
+       ======================================================= -->
+
+  <div
+    id="confettiLayer"
+    class="confetti-layer"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+       ORDER PENTING
+       ======================================================= -->
+
+  <script src="js/questions.js"></script>
+
+  <script src="js/core.js"></script>
+
+  <script src="js/app.js"></script>
+
 </body>
 </html>
