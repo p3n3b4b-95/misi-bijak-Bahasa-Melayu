@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 390" role="img" aria-label="Dua maskot kanak-kanak membaca buku di Pulau Bahasa">
+  <defs>
+    <linearGradient id="island" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8ee5b8"/><stop offset="1" stop-color="#55c89b"/></linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="5" flood-color="#486f86" flood-opacity=".18"/></filter>
+  </defs>
+  <circle cx="418" cy="72" r="45" fill="#ffe66f" opacity=".9"/>
+  <g fill="#fff" opacity=".9"><ellipse cx="93" cy="68" rx="68" ry="24"/><circle cx="70" cy="47" r="28"/><circle cx="110" cy="43" r="35"/></g>
+  <ellipse cx="260" cy="336" rx="220" ry="48" fill="url(#island)" filter="url(#s)"/>
+  <path d="M54 332c70 26 344 25 412 0-22 37-73 53-205 53S78 370 54 332Z" fill="#f2c765"/>
+  <g transform="translate(92 91)" filter="url(#s)">
+    <path d="M42 98c-12 25-11 75 7 106h95c15-39 15-77-3-108Z" fill="#58c7df"/>
+    <circle cx="92" cy="64" r="57" fill="#f4bf91"/>
+    <path d="M38 67C29 16 68-4 99 7c38-1 62 31 47 75-7-25-27-42-50-47-21 9-38 21-58 32Z" fill="#35445d"/>
+    <circle cx="72" cy="67" r="5" fill="#26364c"/><circle cx="111" cy="67" r="5" fill="#26364c"/>
+    <path d="M76 88c10 9 21 9 31 0" fill="none" stroke="#d66b72" stroke-width="4" stroke-linecap="round"/>
+    <path d="m43 132-32-17M140 132l31-19" stroke="#f4bf91" stroke-width="18" stroke-linecap="round"/>
+    <path d="M55 153c25-12 49-12 75 0v55c-25-13-50-13-75 0Z" fill="#fff1a6" stroke="#27415f" stroke-width="3"/>
+    <path d="M92 151v57" stroke="#27415f" stroke-width="3"/>
+  </g>
+  <g transform="translate(282 99)" filter="url(#s)">
+    <path d="M38 99c-14 29-11 74 7 103h98c13-37 11-75-5-107Z" fill="#ff80a6"/>
+    <circle cx="91" cy="61" r="55" fill="#f6c49a"/>
+    <path d="M36 71C25 21 56-5 91 5c32-10 66 17 57 67-17-17-35-31-59-37-14 13-31 24-53 36Z" fill="#493d55"/>
+    <path d="M37 62c-18 31-15 73 2 92M145 60c17 31 15 72-2 93" fill="none" stroke="#493d55" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="72" cy="65" r="5" fill="#26364c"/><circle cx="109" cy="65" r="5" fill="#26364c"/>
+    <path d="M76 86c10 9 21 9 31 0" fill="none" stroke="#d66b72" stroke-width="4" stroke-linecap="round"/>
+    <path d="m44 131-30-18M137 131l30-19" stroke="#f6c49a" stroke-width="18" stroke-linecap="round"/>
+    <path d="M53 151c25-12 49-12 75 0v55c-25-13-50-13-75 0Z" fill="#dff7ff" stroke="#27415f" stroke-width="3"/>
+    <path d="M90 149v58" stroke="#27415f" stroke-width="3"/>
+  </g>
+  <g font-family="Arial Rounded MT Bold,Arial" font-weight="900" fill="#fff" text-anchor="middle"><text x="49" y="192" font-size="29" transform="rotate(-12 49 192)">A</text><text x="472" y="202" font-size="30" transform="rotate(10 472 202)">Ba</text><text x="261" y="49" font-size="27">⭐</text></g>
+</svg>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#65c8df">
+  <meta name="description" content="Game Bahasa Melayu Pemulihan Khas: vokal, KV, KVK, padanan gambar, susun huruf dan ayat mudah.">
+  <title>Misi Bijak Bahasa Melayu</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/questions.js" defer></script>
+  <script src="js/core.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Terus ke permainan</a>
+  <div class="cloud cloud-one" aria-hidden="true"></div>
+  <div class="cloud cloud-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <button class="brand" id="brandHome" type="button" aria-label="Kembali ke menu utama">
+      <img src="assets/logo.svg" alt="" width="52" height="52">
+      <span>Misi Bijak BM</span>
+    </button>
+    <div class="top-actions">
+      <button class="pill icon-button" id="soundToggle" type="button" aria-pressed="true" title="Hidup atau matikan bunyi">🔊 <span>Bunyi</span></button>
+      <div class="pill" id="totalStars" aria-label="Jumlah bintang">⭐ 0</div>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section id="homeScreen" class="screen" aria-labelledby="homeTitle">
+      <div class="hero card">
+        <div class="hero-copy">
+          <p class="eyebrow">Belajar • Main • Berjaya</p>
+          <h1 id="homeTitle">Misi Bijak<br><span>Bahasa Melayu!</span></h1>
+          <p class="hero-text">Jelajah Pulau Bahasa bersama Mimi dan Bobo. Kumpul bintang sambil membaca!</p>
+          <label class="name-label" for="studentName">Nama murid</label>
+          <div class="start-row">
+            <input id="studentName" class="name-input" maxlength="30" autocomplete="name" placeholder="Contoh: Aina">
+            <button class="button button-primary" id="quickStart" type="button">Mula misi <span aria-hidden="true">🚀</span></button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <img src="assets/mascots.svg" alt="" width="480" height="360">
+        </div>
+      </div>
+
+      <div class="dashboard-row">
+        <div class="progress-card card">
+          <div class="rank-icon" id="rankIcon">🌱</div>
+          <div>
+            <p class="mini-label">Tahap kamu</p>
+            <h2 id="rankName">Tunas Bahasa</h2>
+            <p id="rankHint">Kumpul 80 bintang untuk naik tahap.</p>
+          </div>
+        </div>
+        <button class="reset-button" id="resetProgress" type="button">↻ Set semula kemajuan</button>
+      </div>
+
+      <section class="missions" aria-labelledby="missionsTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Pilih permainan</p>
+            <h2 id="missionsTitle">Enam misi menanti kamu</h2>
+          </div>
+          <span class="mission-count">8 soalan / misi</span>
+        </div>
+        <div class="mission-grid" id="missionGrid"></div>
+      </section>
+    </section>
+
+    <section id="gameScreen" class="screen hidden" aria-labelledby="missionTitle">
+      <div class="game-card card">
+        <div class="game-toolbar">
+          <button class="button button-soft" id="exitGame" type="button">← Menu</button>
+          <div class="mission-badge" id="missionBadge"><span id="missionIcon">🔤</span><span id="missionTitle">Misi</span></div>
+          <div class="game-stats">
+            <span class="pill" id="questionCount">1 / 8</span>
+            <span class="pill" id="gameScore">⭐ 0</span>
+          </div>
+        </div>
+        <div class="progress-track" aria-label="Kemajuan misi"><div id="progressBar"></div></div>
+
+        <div class="question-area">
+          <p class="instruction" id="instruction">Pilih jawapan yang betul.</p>
+          <h2 class="question" id="questionText"></h2>
+          <div class="picture-stage" id="pictureStage" role="img" aria-label="Ilustrasi soalan">
+            <span id="pictureEmoji" aria-hidden="true">📚</span>
+            <span class="picture-label" id="pictureLabel"></span>
+          </div>
+          <div id="interaction" class="interaction"></div>
+          <p class="feedback" id="feedback" aria-live="polite"></p>
+          <div class="game-buttons">
+            <button class="button button-soft" id="listenButton" type="button">🔊 Dengar</button>
+            <button class="button button-primary hidden" id="nextButton" type="button">Seterusnya →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultScreen" class="screen hidden" aria-labelledby="resultTitle">
+      <div class="result-card card">
+        <div class="result-burst" id="resultIcon" aria-hidden="true">🏆</div>
+        <p class="eyebrow">Misi selesai</p>
+        <h1 id="resultTitle">Syabas, <span id="resultName">Adik</span>!</h1>
+        <p class="result-score" id="resultScore">0 / 80 mata</p>
+        <div class="stars-earned" id="starsEarned" aria-label="Bintang diperoleh"></div>
+        <p id="resultMessage"></p>
+        <div class="result-actions">
+          <button class="button button-primary" id="playAgain" type="button">Main lagi</button>
+          <button class="button button-soft" id="resultHome" type="button">Pilih misi</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+  <div class="confirm-overlay hidden" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="confirm-box card">
+      <div class="confirm-emoji">🌈</div>
+      <h2 id="confirmTitle">Set semula kemajuan?</h2>
+      <p>Semua bintang dan rekod misi pada peranti ini akan dipadam.</p>
+      <div class="result-actions">
+        <button class="button button-danger" id="confirmReset" type="button">Ya, set semula</button>
+        <button class="button button-soft" id="cancelReset" type="button">Batal</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
