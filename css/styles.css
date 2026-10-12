@@ -85,6 +85,9 @@ button:focus-visible, input:focus-visible { outline: 4px solid #6246b6; outline-
 .rank-icon { width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: #fff5bd; font-size: 2rem; }
 .mini-label { color: var(--pink-dark); font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 900; }
 .reset-button { border: 0; background: transparent; color: var(--muted); text-decoration: underline; cursor: pointer; font-weight: 800; }
+.dashboard-actions { display: flex; align-items: center; gap: 18px; }
+.teacher-link { color: var(--ink); font-weight: 900; }
+.sync-status { min-height: 24px; color: var(--muted); font-weight: 800; }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 17px; }
 .section-heading h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.6rem); }
 .mission-count { color: var(--muted); font-weight: 800; white-space: nowrap; }
@@ -174,6 +177,7 @@ button:focus-visible, input:focus-visible { outline: 4px solid #6246b6; outline-
   .name-input { width: 100%; }
   .hero .button-primary { width: 100%; min-width: 0; }
   .dashboard-row, .section-heading { align-items: stretch; flex-direction: column; }
+  .dashboard-actions { align-items: flex-start; flex-direction: column; gap: 10px; }
   .progress-card { min-width: 0; }
   .mission-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .mission-card { min-height: 250px; padding: 11px; text-align: center; }

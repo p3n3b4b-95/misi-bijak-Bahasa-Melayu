@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard Guru · Misi Bijak BM</title>
+  <link rel="stylesheet" href="css/teacher.css?v=1.0.0">
+  <script src="js/supabase-config.js?v=1.0.0" defer></script>
+  <script src="js/teacher.js?v=1.0.0" defer></script>
+</head>
+<body>
+  <main class="teacher-shell">
+    <header><a href="index.html">← Kembali ke game</a><h1>📊 Dashboard Guru</h1><p>Pantau pencapaian murid mengikut nama, kelas dan misi.</p></header>
+    <section class="panel" id="loginPanel">
+      <h2>Log masuk guru</h2>
+      <form id="loginForm"><label>E-mel<input id="email" type="email" required autocomplete="username"></label><label>Kata laluan<input id="password" type="password" required autocomplete="current-password"></label><button type="submit">Log masuk</button></form>
+      <p id="loginMessage" role="alert"></p>
+    </section>
+    <section class="hidden" id="dashboardPanel">
+      <div class="toolbar"><div><label>Kelas<select id="classFilter"><option value="">Semua kelas</option></select></label><label>Nama<input id="nameFilter" placeholder="Cari murid"></label></div><button id="logout" type="button">Log keluar</button></div>
+      <div class="summary"><article><strong id="studentCount">0</strong><span>Murid</span></article><article><strong id="attemptCount">0</strong><span>Percubaan</span></article><article><strong id="averageScore">0%</strong><span>Purata</span></article></div>
+      <div class="panel table-wrap"><table><thead><tr><th>Tarikh</th><th>Nama</th><th>Kelas</th><th>Misi</th><th>Markah</th><th>Bintang</th></tr></thead><tbody id="resultRows"></tbody></table><p id="emptyState">Belum ada rekod.</p></div>
+    </section>
+  </main>
+</body>
+</html>

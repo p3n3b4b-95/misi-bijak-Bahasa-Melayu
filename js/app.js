@@ -5,6 +5,7 @@
   const Core = window.GameCore;
   const $ = (id) => document.getElementById(id);
   const storageKey = "misiBijakBM.v1";
+  const pendingKey = "misiBijakBM.pendingResults";
   const defaultProgress = { stars: 0, best: {}, name: "", className: "", sound: true };
   let progress = loadProgress();
   let currentMode = "vokal";
@@ -205,8 +206,43 @@
     $("starsEarned").textContent = `${"⭐".repeat(earned)}${"☆".repeat(3 - earned)}`;
     $("resultIcon").textContent = earned === 3 ? "🏆" : earned === 2 ? "🌟" : earned === 1 ? "🎈" : "💪";
     $("resultMessage").textContent = earned === 3 ? "Cemerlang! Kamu memang Wira Bahasa!" : earned === 2 ? "Bagus! Sedikit lagi untuk tiga bintang." : "Teruskan latihan. Setiap cubaan menjadikan kamu lebih bijak!";
+    queueResult({
+      attempt_id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+      student_name: progress.name || "Tanpa nama",
+      class_name: progress.className || "Tanpa kelas",
+      mission_id: currentMode,
+      score,
+      total: maxScore,
+      stars: earned
+    });
     showScreen("resultScreen");
     if (earned >= 2) celebrate(30);
+  }
+
+  function queueResult(result) {
+    const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+    pending.push(result);
+    localStorage.setItem(pendingKey, JSON.stringify(pending));
+    flushResults();
+  }
+
+  async function flushResults() {
+    const config = window.SUPABASE_CONFIG;
+    const pending = JSON.parse(localStorage.getItem(pendingKey) || "[]");
+    if (!config || !pending.length) return;
+    $("syncStatus").textContent = "☁️ Menyimpan markah untuk guru…";
+    try {
+      const response = await fetch(`${config.url}/rest/v1/results?on_conflict=attempt_id`, {
+        method: "POST",
+        headers: { apikey: config.key, "Content-Type": "application/json", Prefer: "resolution=ignore-duplicates,return=minimal" },
+        body: JSON.stringify(pending)
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      localStorage.removeItem(pendingKey);
+      $("syncStatus").textContent = "✅ Markah sudah dihantar kepada guru.";
+    } catch (_) {
+      $("syncStatus").textContent = "📥 Markah disimpan pada peranti dan akan dihantar apabila talian pulih.";
+    }
   }
 
   function speakCurrent() {
@@ -304,12 +340,14 @@
   $("nextButton").addEventListener("click", nextQuestion);
   $("listenButton").addEventListener("click", speakCurrent);
   $("studentName").addEventListener("change", (event) => { progress.name = event.target.value.trim().slice(0, 30); saveProgress(); });
+  $("studentClass").addEventListener("change", (event) => { progress.className = event.target.value.trim().slice(0, 30); saveProgress(); });
   $("soundToggle").addEventListener("click", () => { progress.sound = !progress.sound; saveProgress(); updateHome(); if (progress.sound) playTone(523, .12); });
   $("resetProgress").addEventListener("click", () => $("confirmOverlay").classList.remove("hidden"));
   $("cancelReset").addEventListener("click", () => $("confirmOverlay").classList.add("hidden"));
   $("confirmReset").addEventListener("click", () => { progress = { ...defaultProgress }; saveProgress(); $("confirmOverlay").classList.add("hidden"); updateHome(); });
   $("confirmOverlay").addEventListener("click", (event) => { if (event.target === $("confirmOverlay")) $("confirmOverlay").classList.add("hidden"); });
   document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !$("confirmOverlay").classList.contains("hidden")) $("confirmOverlay").classList.add("hidden"); });
+  window.addEventListener("online", flushResults);
 
   updateHome();
 }());
