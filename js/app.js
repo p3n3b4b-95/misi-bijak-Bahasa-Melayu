@@ -41,12 +41,17 @@
     $("rankIcon").textContent = rank.icon;
     $("rankName").textContent = rank.name;
     $("rankHint").textContent = rank.nextAt ? `Kumpul ${rank.nextAt - progress.stars} bintang lagi untuk naik tahap.` : "Tahap tertinggi sudah dicapai!";
-    $("missionGrid").innerHTML = DATA.modes.map((mode) => {
+    $("missionGrid").innerHTML = DATA.modes.map((mode, index) => {
       const best = progress.best[mode.id] || 0;
+      const stars = Core.performanceStars(best, 80);
       return `<button class="mission-card" data-mode="${mode.id}" data-tone="${mode.tone}" type="button">
-        <span class="mission-best">⭐ Terbaik ${best}</span>
-        <span class="mission-icon" aria-hidden="true">${mode.icon}</span>
-        <h3>${mode.title}</h3><p>${mode.description}</p>
+        <span class="mission-number" aria-hidden="true">${index + 1}</span>
+        <span class="mission-card-top"><h3>${mode.title}</h3><p>${mode.description}</p></span>
+        <span class="mission-preview"><span class="mission-icon" aria-hidden="true">${mode.icon}</span></span>
+        <span class="mission-card-bottom">
+          <span><span class="mission-stars" aria-label="${stars} daripada 3 bintang">${"⭐".repeat(stars)}${"☆".repeat(3 - stars)}</span><small>Terbaik ${best}</small></span>
+          <span class="mission-start">Mulakan ▶</span>
+        </span>
       </button>`;
     }).join("");
     document.querySelectorAll(".mission-card").forEach((button) => button.addEventListener("click", () => startGame(button.dataset.mode)));
