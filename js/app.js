@@ -5,7 +5,7 @@
   const Core = window.GameCore;
   const $ = (id) => document.getElementById(id);
   const storageKey = "misiBijakBM.v1";
-  const defaultProgress = { stars: 0, best: {}, name: "", sound: true };
+  const defaultProgress = { stars: 0, best: {}, name: "", className: "", sound: true };
   let progress = loadProgress();
   let currentMode = "vokal";
   let questions = [];
@@ -35,6 +35,7 @@
   function updateHome() {
     $("totalStars").textContent = `⭐ ${progress.stars}`;
     $("studentName").value = progress.name || "";
+    $("studentClass").value = progress.className || "";
     $("soundToggle").setAttribute("aria-pressed", String(progress.sound));
     $("soundToggle").firstChild.textContent = progress.sound ? "🔊 " : "🔇 ";
     const rank = Core.rankFor(progress.stars);
@@ -60,6 +61,7 @@
   function startGame(modeId) {
     const mode = DATA.modes.find((entry) => entry.id === modeId) || DATA.modes[0];
     progress.name = $("studentName").value.trim().slice(0, 30);
+    progress.className = $("studentClass").value.trim().slice(0, 30);
     saveProgress();
     currentMode = mode.id;
     questions = Core.buildRound(currentMode, DATA, 8);
@@ -209,12 +211,22 @@
 
   function speakCurrent() {
     if (!progress.sound) return;
-    if (!("speechSynthesis" in window)) {
-      feedback("Pelayar ini tidak menyokong suara.", false, false);
-      return;
-    }
     const question = currentQuestion();
     const text = question.mode === "ayat" ? question.sentence.replace("____", question.answer) : question.word;
+    const audioName = question.mode === "ayat" ? `ayat-${question.answer}` : question.word;
+    const player = $("voicePlayer");
+    player.pause();
+    player.currentTime = 0;
+    player.src = `assets/audio/${audioName}.mp3`;
+    const playback = player.play();
+    if (playback && typeof playback.catch === "function") playback.catch(() => speakWithBrowser(text));
+  }
+
+  function speakWithBrowser(text) {
+    if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== "function") {
+      feedback("Audio tidak dapat dimainkan pada pelayar ini.", false, false);
+      return;
+    }
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "ms-MY";
     utterance.rate = .72;
@@ -222,11 +234,24 @@
     speechSynthesis.speak(utterance);
   }
 
+  function playEffect(name) {
+    if (!progress.sound) return;
+    const player = $("sfxPlayer");
+    player.pause();
+    player.currentTime = 0;
+    player.src = `assets/audio/${name}.mp3`;
+    const playback = player.play();
+    if (playback && typeof playback.catch === "function") playback.catch(() => {});
+  }
+
   function playTone(frequency, duration) {
     if (!progress.sound) return;
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
+      if (!AudioContext) {
+        playEffect(frequency < 300 ? "wrong" : "tap");
+        return;
+      }
       const context = new AudioContext();
       const oscillator = context.createOscillator();
       const gain = context.createGain();
@@ -242,6 +267,10 @@
   }
 
   function playSuccess() {
+    if (!(window.AudioContext || window.webkitAudioContext)) {
+      playEffect("success");
+      return;
+    }
     playTone(523, .16);
     window.setTimeout(() => playTone(659, .16), 110);
     window.setTimeout(() => playTone(784, .2), 220);

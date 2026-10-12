@@ -1,6 +1,9 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const Core = require("../js/core.js");
+global.window = {};
+require("../js/questions.js");
+const liveData = global.window.GAME_DATA;
 
 const data = {
   words: [
@@ -30,7 +33,20 @@ test("each supported mode builds a valid question", () => {
 });
 
 test("buildRound returns requested count", () => {
-  assert.equal(Core.buildRound("kv", data, 8, () => .25).length, 8);
+  assert.equal(Core.buildRound("padan", data, 4, () => .25).length, 4);
+});
+
+test("buildRound never repeats a question", () => {
+  const round = Core.buildRound("padan", data, 5, () => .25);
+  assert.equal(new Set(round.map(({ word }) => word)).size, round.length);
+});
+
+test("every live mission has eight unique questions", () => {
+  liveData.modes.forEach(({ id }) => {
+    const round = Core.buildRound(id, liveData, 8, () => .25);
+    assert.equal(round.length, 8, id);
+    assert.equal(new Set(round.map(({ word }) => word)).size, 8, id);
+  });
 });
 
 test("rank thresholds are stable", () => {

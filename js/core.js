@@ -64,9 +64,9 @@
     if (mode === "ayat") {
       pool = data.sentenceQuestions.map((entry) => ({ word: entry.answer, emoji: entry.emoji, type: "ayat" }));
     }
-    const queue = [];
-    while (queue.length < count) queue.push(...shuffle(pool, random));
-    return queue.slice(0, count).map((item) => buildQuestion(mode, item, data.words, data.sentenceQuestions, random));
+    return shuffle(pool, random)
+      .slice(0, Math.min(count, pool.length))
+      .map((item) => buildQuestion(mode, item, data.words, data.sentenceQuestions, random));
   }
 
   function rankFor(stars) {

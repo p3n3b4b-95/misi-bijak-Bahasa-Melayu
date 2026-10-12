@@ -7,10 +7,10 @@
   <meta name="description" content="Game Bahasa Melayu Pemulihan Khas: vokal, KV, KVK, padanan gambar, susun huruf dan ayat mudah.">
   <title>Misi Bijak Bahasa Melayu</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=1.2.0">
-  <script src="js/questions.js?v=1.2.0" defer></script>
-  <script src="js/core.js?v=1.2.0" defer></script>
-  <script src="js/app.js?v=1.2.0" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=1.3.0">
+  <script src="js/questions.js?v=1.3.0" defer></script>
+  <script src="js/core.js?v=1.3.0" defer></script>
+  <script src="js/app.js?v=1.3.0" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Terus ke permainan</a>
@@ -38,6 +38,8 @@
           <label class="visually-hidden" for="studentName">Nama murid</label>
           <div class="start-row">
             <input id="studentName" class="name-input" maxlength="30" autocomplete="name" placeholder="Nama murid">
+            <label class="visually-hidden" for="studentClass">Kelas</label>
+            <input id="studentClass" class="name-input" maxlength="30" placeholder="Kelas (contoh: 1 Bestari)">
             <button class="button button-primary" id="quickStart" type="button"><span aria-hidden="true">🚀</span> Mula bermain</button>
           </div>
         </div>
@@ -113,6 +115,8 @@
   </main>
 
   <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+  <audio id="voicePlayer" preload="none"></audio>
+  <audio id="sfxPlayer" preload="none"></audio>
   <div class="confirm-overlay hidden" id="confirmOverlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
     <div class="confirm-box card">
       <div class="confirm-emoji">🌈</div>

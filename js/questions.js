@@ -7,6 +7,11 @@
     { word: "ikan", emoji: "🐟", type: "vokal", sentence: "Ikan berenang." },
     { word: "oren", emoji: "🍊", type: "vokal", sentence: "Oren itu manis." },
     { word: "ular", emoji: "🐍", type: "vokal", sentence: "Ular itu panjang." },
+    { word: "angsa", emoji: "🪿", type: "vokal", sentence: "Angsa itu putih." },
+    { word: "emak", emoji: "👩", type: "vokal", sentence: "Emak memasak nasi." },
+    { word: "itik", emoji: "🦆", type: "vokal", sentence: "Itik berenang di kolam." },
+    { word: "obor", emoji: "🔥", type: "vokal", sentence: "Obor itu menyala." },
+    { word: "ubi", emoji: "🍠", type: "vokal", sentence: "Ubi itu sedap." },
     { word: "baju", emoji: "👕", type: "kv", sentence: "Ini baju saya." },
     { word: "bola", emoji: "⚽", type: "kv", sentence: "Ali sepak bola." },
     { word: "buku", emoji: "📘", type: "kv", sentence: "Siti baca buku." },
@@ -16,6 +21,12 @@
     { word: "roti", emoji: "🍞", type: "kv", sentence: "Saya makan roti." },
     { word: "susu", emoji: "🥛", type: "kv", sentence: "Adik minum susu." },
     { word: "topi", emoji: "🧢", type: "kv", sentence: "Amin pakai topi." },
+    { word: "cili", emoji: "🌶️", type: "kv", sentence: "Cili itu pedas." },
+    { word: "dadu", emoji: "🎲", type: "kv", sentence: "Dadu ada enam muka." },
+    { word: "kuda", emoji: "🐴", type: "kv", sentence: "Kuda berlari laju." },
+    { word: "meja", emoji: "🪑", type: "kv", sentence: "Buku di atas meja." },
+    { word: "nasi", emoji: "🍚", type: "kv", sentence: "Saya makan nasi." },
+    { word: "sawi", emoji: "🥬", type: "kv", sentence: "Sawi ialah sayur." },
     { word: "bas", emoji: "🚌", type: "kvk", sentence: "Saya naik bas." },
     { word: "beg", emoji: "🎒", type: "kvk", sentence: "Beg itu berat." },
     { word: "cat", emoji: "🎨", type: "kvk", sentence: "Cat itu biru." },
@@ -23,7 +34,12 @@
     { word: "kek", emoji: "🍰", type: "kvk", sentence: "Kek itu sedap." },
     { word: "pen", emoji: "🖊️", type: "kvk", sentence: "Saya ada pen." },
     { word: "rak", emoji: "🗄️", type: "kvk", sentence: "Buku di atas rak." },
-    { word: "van", emoji: "🚐", type: "kvk", sentence: "Van itu putih." }
+    { word: "van", emoji: "🚐", type: "kvk", sentence: "Van itu putih." },
+    { word: "bom", emoji: "💣", type: "kvk", sentence: "Bom itu berbahaya." },
+    { word: "gam", emoji: "🧴", type: "kvk", sentence: "Gam melekatkan kertas." },
+    { word: "jus", emoji: "🧃", type: "kvk", sentence: "Saya minum jus." },
+    { word: "tin", emoji: "🥫", type: "kvk", sentence: "Tin itu kosong." },
+    { word: "zip", emoji: "🤐", type: "kvk", sentence: "Zip beg itu rosak." }
   ];
 
   const sentenceQuestions = [
@@ -36,7 +52,11 @@
     { sentence: "Kita lihat dengan ____.", answer: "mata", emoji: "👁️" },
     { sentence: "Buku di atas ____.", answer: "rak", emoji: "🗄️" },
     { sentence: "Saya menulis dengan ____.", answer: "pen", emoji: "🖊️" },
-    { sentence: "Ibu potong ____.", answer: "kek", emoji: "🍰" }
+    { sentence: "Ibu potong ____.", answer: "kek", emoji: "🍰" },
+    { sentence: "Saya makan ____.", answer: "nasi", emoji: "🍚" },
+    { sentence: "Buku di atas ____.", answer: "meja", emoji: "🪑" },
+    { sentence: "Saya minum ____.", answer: "jus", emoji: "🧃" },
+    { sentence: "Kuda berlari ____.", answer: "laju", emoji: "🐴" }
   ];
 
   const modes = [
