@@ -353,6 +353,7 @@
 
   updateHome();
   loadClasses();
+  flushResults();
 
   async function loadClasses() {
     const select = $("studentClass");

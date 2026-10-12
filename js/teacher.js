@@ -5,6 +5,7 @@
   const missionNames = { vokal: "Huruf Vokal", kv: "Suku Kata KV", kvk: "Perkataan KVK", padan: "Padan Gambar", susun: "Susun Huruf", ayat: "Ayat Mudah" };
   let results = [];
   let classes = [];
+  let refreshTimer;
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[character]));
@@ -25,6 +26,7 @@
       const session = await request("/auth/v1/token?grant_type=password", { method: "POST", body: JSON.stringify({ email: $("email").value, password: $("password").value }) });
       sessionStorage.setItem("teacherToken", session.access_token);
       await loadResults();
+      startRefreshing();
     } catch (error) { $("loginMessage").textContent = error.message; }
   }
 
@@ -37,6 +39,12 @@
     $("dashboardPanel").classList.remove("hidden");
     renderClasses();
     render();
+    $("refreshStatus").textContent = `✅ Markah dikemas kini pada ${new Date().toLocaleTimeString("ms-MY", { hour: "2-digit", minute: "2-digit" })}. Auto-segar setiap 15 saat.`;
+  }
+
+  function startRefreshing() {
+    window.clearInterval(refreshTimer);
+    refreshTimer = window.setInterval(() => loadResults().catch(() => { $("refreshStatus").textContent = "⚠️ Gagal menyegar. Semak sambungan internet."; }), 15000);
   }
 
   function renderClasses() {
@@ -85,6 +93,7 @@
   $("classForm").addEventListener("submit", addClass);
   $("classFilter").addEventListener("change", render);
   $("nameFilter").addEventListener("input", render);
+  $("refreshResults").addEventListener("click", () => { $("refreshStatus").textContent = "Menyegarkan markah…"; loadResults().catch((error) => { $("refreshStatus").textContent = error.message; }); });
   $("logout").addEventListener("click", () => { sessionStorage.removeItem("teacherToken"); location.reload(); });
-  if (sessionStorage.getItem("teacherToken")) loadResults().catch(() => sessionStorage.removeItem("teacherToken"));
+  if (sessionStorage.getItem("teacherToken")) loadResults().then(startRefreshing).catch(() => sessionStorage.removeItem("teacherToken"));
 }());
