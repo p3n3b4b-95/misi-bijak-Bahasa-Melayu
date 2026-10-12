@@ -7,10 +7,10 @@
   <meta name="description" content="Game Bahasa Melayu Pemulihan Khas: vokal, KV, KVK, padanan gambar, susun huruf dan ayat mudah.">
   <title>Misi Bijak Bahasa Melayu</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=1.1.0">
-  <script src="js/questions.js?v=1.1.0" defer></script>
-  <script src="js/core.js?v=1.1.0" defer></script>
-  <script src="js/app.js?v=1.1.0" defer></script>
+  <link rel="stylesheet" href="css/styles.css?v=1.2.0">
+  <script src="js/questions.js?v=1.2.0" defer></script>
+  <script src="js/core.js?v=1.2.0" defer></script>
+  <script src="js/app.js?v=1.2.0" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Terus ke permainan</a>
@@ -32,17 +32,14 @@
     <section id="homeScreen" class="screen" aria-labelledby="homeTitle">
       <div class="hero card">
         <div class="hero-copy">
-          <p class="eyebrow">Belajar • Main • Berjaya</p>
+          <div class="hero-mascots" aria-hidden="true">👦🏻 <span>📚</span> 👧🏻</div>
           <h1 id="homeTitle">Misi Bijak<br><span>Bahasa Melayu!</span></h1>
-          <p class="hero-text">Jelajah Pulau Bahasa bersama Mimi dan Bobo. Kumpul bintang sambil membaca!</p>
-          <label class="name-label" for="studentName">Nama murid</label>
+          <p class="hero-text">Jom belajar sambil bermain! 🎉</p>
+          <label class="visually-hidden" for="studentName">Nama murid</label>
           <div class="start-row">
-            <input id="studentName" class="name-input" maxlength="30" autocomplete="name" placeholder="Contoh: Aina">
-            <button class="button button-primary" id="quickStart" type="button">Mula misi <span aria-hidden="true">🚀</span></button>
+            <input id="studentName" class="name-input" maxlength="30" autocomplete="name" placeholder="Nama murid">
+            <button class="button button-primary" id="quickStart" type="button"><span aria-hidden="true">🚀</span> Mula bermain</button>
           </div>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <img src="assets/mascots.svg" alt="" width="480" height="360">
         </div>
       </div>
 
