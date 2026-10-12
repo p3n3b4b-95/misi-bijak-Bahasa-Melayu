@@ -6,7 +6,7 @@
   const $ = (id) => document.getElementById(id);
   const storageKey = "misiBijakBM.v1";
   const pendingKey = "misiBijakBM.pendingResults";
-  const defaultProgress = { stars: 0, best: {}, name: "", className: "", sound: true };
+  const defaultProgress = { stars: 0, best: {}, recent: {}, name: "", className: "", sound: true };
   let progress = loadProgress();
   let currentMode = "vokal";
   let questions = [];
@@ -18,7 +18,7 @@
   function loadProgress() {
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
-      return saved && typeof saved === "object" ? { ...defaultProgress, ...saved, best: saved.best || {} } : { ...defaultProgress };
+      return saved && typeof saved === "object" ? { ...defaultProgress, ...saved, best: saved.best || {}, recent: saved.recent || {} } : { ...defaultProgress };
     } catch (_) {
       return { ...defaultProgress };
     }
@@ -65,7 +65,9 @@
     progress.className = $("studentClass").value.trim().slice(0, 30);
     saveProgress();
     currentMode = mode.id;
-    questions = Core.buildRound(currentMode, DATA, 8);
+    questions = Core.buildRound(currentMode, DATA, 8, Math.random, progress.recent[currentMode] || []);
+    progress.recent[currentMode] = questions.map(({ word }) => word);
+    saveProgress();
     questionIndex = 0;
     score = 0;
     $("missionIcon").textContent = mode.icon;
@@ -350,4 +352,20 @@
   window.addEventListener("online", flushResults);
 
   updateHome();
+  loadClasses();
+
+  async function loadClasses() {
+    const select = $("studentClass");
+    const selected = progress.className || "";
+    const names = [];
+    try {
+      const response = await fetch(`${window.SUPABASE_CONFIG.url}/rest/v1/classes?select=name&order=name`, { headers: { apikey: window.SUPABASE_CONFIG.key } });
+      if (!response.ok) throw new Error();
+      (await response.json()).forEach(({ name }) => names.push(name));
+    } catch (_) { /* Game kekal boleh dimainkan ketika kelas belum tersedia. */ }
+    if (selected && !names.includes(selected)) names.unshift(selected);
+    select.replaceChildren(new Option(names.length ? "Pilih kelas" : "Kelas belum ditambah", ""));
+    names.forEach((name) => select.add(new Option(name, name)));
+    select.value = selected;
+  }
 }());

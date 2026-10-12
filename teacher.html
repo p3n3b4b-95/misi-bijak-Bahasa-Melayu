@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Dashboard Guru · Misi Bijak BM</title>
-  <link rel="stylesheet" href="css/teacher.css?v=1.1.0">
+  <link rel="stylesheet" href="css/teacher.css?v=1.2.0">
   <script src="js/supabase-config.js?v=1.0.0" defer></script>
-  <script src="js/teacher.js?v=1.1.0" defer></script>
+  <script src="js/teacher.js?v=1.2.0" defer></script>
 </head>
 <body>
   <main class="teacher-shell">
@@ -20,6 +20,7 @@
       <aside class="welcome-card"><div>🎯</div><h2>Semua kemajuan di satu tempat</h2><ul><li>Semak markah setiap murid</li><li>Tapis mengikut nama dan kelas</li><li>Lihat bintang serta sejarah percubaan</li></ul></aside>
     </div>
     <section class="hidden" id="dashboardPanel">
+      <div class="panel class-manager"><div><p class="eyebrow">Tetapan murid</p><h2>🏫 Senarai kelas</h2><p>Tambah kelas supaya murid boleh memilihnya sebelum bermain.</p></div><form id="classForm"><label>Nama kelas<input id="newClass" maxlength="30" required placeholder="Contoh: 1 Bestari"></label><button type="submit">+ Tambah kelas</button></form><div class="class-list" id="classList"></div><p id="classMessage" role="status"></p></div>
       <div class="toolbar"><div><label>Kelas<select id="classFilter"><option value="">Semua kelas</option></select></label><label>Nama<input id="nameFilter" placeholder="Cari murid"></label></div><button id="logout" type="button">Log keluar</button></div>
       <div class="summary"><article><strong id="studentCount">0</strong><span>Murid</span></article><article><strong id="attemptCount">0</strong><span>Percubaan</span></article><article><strong id="averageScore">0%</strong><span>Purata</span></article></div>
       <div class="panel table-wrap"><table><thead><tr><th>Tarikh</th><th>Nama</th><th>Kelas</th><th>Misi</th><th>Markah</th><th>Bintang</th></tr></thead><tbody id="resultRows"></tbody></table><p id="emptyState">Belum ada rekod.</p></div>

@@ -4,6 +4,7 @@
   const $ = (id) => document.getElementById(id);
   const missionNames = { vokal: "Huruf Vokal", kv: "Suku Kata KV", kvk: "Perkataan KVK", padan: "Padan Gambar", susun: "Susun Huruf", ayat: "Ayat Mudah" };
   let results = [];
+  let classes = [];
 
   function escapeHtml(value) {
     return String(value).replace(/[&<>"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[character]));
@@ -28,12 +29,45 @@
   }
 
   async function loadResults() {
-    results = await request("/rest/v1/results?select=student_name,class_name,mission_id,score,total,stars,created_at&order=created_at.desc&limit=1000");
+    [results, classes] = await Promise.all([
+      request("/rest/v1/results?select=student_name,class_name,mission_id,score,total,stars,created_at&order=created_at.desc&limit=1000"),
+      request("/rest/v1/classes?select=name&order=name")
+    ]);
     $("loginPanel").classList.add("hidden");
     $("dashboardPanel").classList.remove("hidden");
-    const classes = [...new Set(results.map((row) => row.class_name))].sort();
-    $("classFilter").innerHTML = `<option value="">Semua kelas</option>${classes.map((name) => `<option>${escapeHtml(name)}</option>`).join("")}`;
+    renderClasses();
     render();
+  }
+
+  function renderClasses() {
+    const names = classes.map(({ name }) => name);
+    $("classList").innerHTML = names.length ? names.map((name) => `<span class="class-chip">🏫 ${escapeHtml(name)}</span>`).join("") : "<span>Belum ada kelas. Tambah kelas pertama di atas.</span>";
+    const filterNames = [...new Set([...names, ...results.map((row) => row.class_name)])].sort((a, b) => a.localeCompare(b, "ms"));
+    const selected = $("classFilter").value;
+    $("classFilter").innerHTML = `<option value="">Semua kelas</option>${filterNames.map((name) => `<option>${escapeHtml(name)}</option>`).join("")}`;
+    $("classFilter").value = selected;
+  }
+
+  async function addClass(event) {
+    event.preventDefault();
+    const name = $("newClass").value.trim().slice(0, 30);
+    if (!name) {
+      $("classMessage").textContent = "Masukkan nama kelas dahulu.";
+      return;
+    }
+    if (classes.some((entry) => entry.name.toLowerCase() === name.toLowerCase())) {
+      $("classMessage").textContent = "Kelas itu sudah ada.";
+      return;
+    }
+    $("classMessage").textContent = "Menambah kelas…";
+    try {
+      const added = await request("/rest/v1/classes", { method: "POST", headers: { Prefer: "return=representation" }, body: JSON.stringify({ name }) });
+      classes.push(added[0]);
+      classes.sort((a, b) => a.name.localeCompare(b.name, "ms"));
+      $("newClass").value = "";
+      $("classMessage").textContent = `✅ ${name} sudah tersedia untuk murid.`;
+      renderClasses();
+    } catch (error) { $("classMessage").textContent = error.message; }
   }
 
   function render() {
@@ -48,6 +82,7 @@
   }
 
   $("loginForm").addEventListener("submit", login);
+  $("classForm").addEventListener("submit", addClass);
   $("classFilter").addEventListener("change", render);
   $("nameFilter").addEventListener("input", render);
   $("logout").addEventListener("click", () => { sessionStorage.removeItem("teacherToken"); location.reload(); });

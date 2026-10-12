@@ -49,6 +49,33 @@ test("every live mission has eight unique questions", () => {
   });
 });
 
+test("the next round avoids every question from the previous round", () => {
+  liveData.modes.forEach(({ id }) => {
+    const first = Core.buildRound(id, liveData, 8, () => .25);
+    const second = Core.buildRound(id, liveData, 8, () => .75, first.map(({ word }) => word));
+    assert.equal(second.filter(({ word }) => first.some((item) => item.word === word)).length, 0, id);
+  });
+});
+
+test("each picture represents only one word", () => {
+  const picturedWords = new Map();
+  liveData.words.forEach(({ word, emoji }) => {
+    assert.equal(picturedWords.has(emoji), false, `${emoji} is shared by ${picturedWords.get(emoji)} and ${word}`);
+    picturedWords.set(emoji, word);
+  });
+  liveData.sentenceQuestions.forEach(({ answer, emoji }) => {
+    const matchingWord = liveData.words.find(({ word }) => word === answer);
+    if (matchingWord) assert.equal(emoji, matchingWord.emoji, answer);
+  });
+});
+
+test("sentence prompts and answers are not duplicated", () => {
+  const sentences = liveData.sentenceQuestions.map(({ sentence }) => sentence);
+  const answers = liveData.sentenceQuestions.map(({ answer }) => answer);
+  assert.equal(new Set(sentences).size, sentences.length);
+  assert.equal(new Set(answers).size, answers.length);
+});
+
 test("rank thresholds are stable", () => {
   assert.equal(Core.rankFor(0).name, "Tunas Bahasa");
   assert.equal(Core.rankFor(80).name, "Bintang Bahasa");

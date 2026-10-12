@@ -56,7 +56,7 @@
     throw new Error(`Mod tidak dikenali: ${mode}`);
   }
 
-  function buildRound(mode, data, count = 8, random = Math.random) {
+  function buildRound(mode, data, count = 8, random = Math.random, excludedWords = []) {
     let pool = data.words;
     if (mode === "vokal") pool = data.words.filter((item) => item.type === "vokal");
     if (mode === "kv") pool = data.words.filter((item) => item.type === "kv");
@@ -64,7 +64,10 @@
     if (mode === "ayat") {
       pool = data.sentenceQuestions.map((entry) => ({ word: entry.answer, emoji: entry.emoji, type: "ayat" }));
     }
-    return shuffle(pool, random)
+    const excluded = new Set(excludedWords);
+    const fresh = pool.filter((item) => !excluded.has(item.word));
+    const recent = pool.filter((item) => excluded.has(item.word));
+    return [...shuffle(fresh, random), ...shuffle(recent, random)]
       .slice(0, Math.min(count, pool.length))
       .map((item) => buildQuestion(mode, item, data.words, data.sentenceQuestions, random));
   }
