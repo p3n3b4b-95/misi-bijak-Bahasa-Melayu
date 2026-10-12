@@ -43,7 +43,7 @@
     $("studentCount").textContent = new Set(filtered.map((row) => `${row.class_name}\0${row.student_name}`)).size;
     $("attemptCount").textContent = filtered.length;
     $("averageScore").textContent = filtered.length ? `${Math.round(filtered.reduce((sum, row) => sum + row.score / row.total, 0) / filtered.length * 100)}%` : "0%";
-    $("resultRows").innerHTML = filtered.map((row) => `<tr><td>${new Date(row.created_at).toLocaleString("ms-MY")}</td><td>${escapeHtml(row.student_name)}</td><td>${escapeHtml(row.class_name)}</td><td>${missionNames[row.mission_id]}</td><td>${row.score}/${row.total}</td><td>${"⭐".repeat(row.stars)}${"☆".repeat(3-row.stars)}</td></tr>`).join("");
+    $("resultRows").innerHTML = filtered.map((row) => `<tr><td data-label="Tarikh">${new Date(row.created_at).toLocaleString("ms-MY")}</td><td data-label="Nama">${escapeHtml(row.student_name)}</td><td data-label="Kelas">${escapeHtml(row.class_name)}</td><td data-label="Misi"><span class="mission-tag">${missionNames[row.mission_id]}</span></td><td data-label="Markah"><strong>${row.score}/${row.total}</strong></td><td data-label="Bintang">${"⭐".repeat(row.stars)}${"☆".repeat(3-row.stars)}</td></tr>`).join("");
     $("emptyState").classList.toggle("hidden", Boolean(filtered.length));
   }
 
