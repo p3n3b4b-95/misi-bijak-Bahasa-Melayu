@@ -87,5 +87,17 @@
     return 0;
   }
 
-  return { VOWELS, shuffle, sample, uniqueOptions, buildQuestion, buildRound, rankFor, performanceStars };
+  async function unsentResults(results, send) {
+    const attempts = await Promise.all(results.map(async (result) => {
+      try {
+        const status = await send(result);
+        return (status >= 200 && status < 300) || status === 409 ? null : result;
+      } catch (_) {
+        return result;
+      }
+    }));
+    return attempts.filter(Boolean);
+  }
+
+  return { VOWELS, shuffle, sample, uniqueOptions, buildQuestion, buildRound, rankFor, performanceStars, unsentResults };
 }));

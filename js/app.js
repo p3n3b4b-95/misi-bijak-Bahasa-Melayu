@@ -234,12 +234,18 @@
     if (!config || !pending.length) return;
     $("syncStatus").textContent = "☁️ Menyimpan markah untuk guru…";
     try {
-      const response = await fetch(`${config.url}/rest/v1/results?on_conflict=attempt_id`, {
-        method: "POST",
-        headers: { apikey: config.key, "Content-Type": "application/json", Prefer: "resolution=ignore-duplicates,return=minimal" },
-        body: JSON.stringify(pending)
+      const unsent = await Core.unsentResults(pending, async (result) => {
+        const response = await fetch(`${config.url}/rest/v1/results`, {
+          method: "POST",
+          headers: { apikey: config.key, "Content-Type": "application/json", Prefer: "return=minimal" },
+          body: JSON.stringify(result)
+        });
+        return response.status;
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      if (unsent.length) {
+        localStorage.setItem(pendingKey, JSON.stringify(unsent));
+        throw new Error("Sebahagian markah belum dihantar");
+      }
       localStorage.removeItem(pendingKey);
       $("syncStatus").textContent = "✅ Markah sudah dihantar kepada guru.";
     } catch (_) {

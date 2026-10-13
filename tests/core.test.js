@@ -89,3 +89,9 @@ test("performance converts score to zero through three stars", () => {
   assert.equal(Core.performanceStars(50, 80), 2);
   assert.equal(Core.performanceStars(70, 80), 3);
 });
+
+test("result sync retries failures but accepts saved duplicates", async () => {
+  const results = [{ id: "saved" }, { id: "duplicate" }, { id: "failed" }];
+  const statuses = { saved: 201, duplicate: 409, failed: 500 };
+  assert.deepEqual(await Core.unsentResults(results, async ({ id }) => statuses[id]), [{ id: "failed" }]);
+});
