@@ -99,5 +99,15 @@
     return attempts.filter(Boolean);
   }
 
-  return { VOWELS, shuffle, sample, uniqueOptions, buildQuestion, buildRound, rankFor, performanceStars, unsentResults };
+  function latestResults(rows) {
+    const seen = new Set();
+    return rows.filter((row) => {
+      const key = [row.class_name, row.student_name, row.mission_id].map((value) => String(value).trim().toLowerCase()).join("\0");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  return { VOWELS, shuffle, sample, uniqueOptions, buildQuestion, buildRound, rankFor, performanceStars, unsentResults, latestResults };
 }));

@@ -95,3 +95,12 @@ test("result sync retries failures but accepts saved duplicates", async () => {
   const statuses = { saved: 201, duplicate: 409, failed: 500 };
   assert.deepEqual(await Core.unsentResults(results, async ({ id }) => statuses[id]), [{ id: "failed" }]);
 });
+
+test("dashboard keeps only the latest daily result per pupil and mission", () => {
+  const rows = [
+    { student_name: "Aina", class_name: "1Amanah", mission_id: "vokal", score: 80 },
+    { student_name: "aina", class_name: "1Amanah", mission_id: "vokal", score: 40 },
+    { student_name: "Aina", class_name: "1Amanah", mission_id: "kv", score: 60 }
+  ];
+  assert.deepEqual(Core.latestResults(rows).map(({ score }) => score), [80, 60]);
+});

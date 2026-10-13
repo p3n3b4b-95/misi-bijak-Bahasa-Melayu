@@ -1,6 +1,7 @@
 (function () {
   "use strict";
   const config = window.SUPABASE_CONFIG;
+  const Core = window.GameCore;
   const $ = (id) => document.getElementById(id);
   const missionNames = { vokal: "Huruf Vokal", kv: "Suku Kata KV", kvk: "Perkataan KVK", padan: "Padan Gambar", susun: "Susun Huruf", ayat: "Ayat Mudah" };
   let results = [];
@@ -31,15 +32,19 @@
   }
 
   async function loadResults() {
-    [results, classes] = await Promise.all([
-      request("/rest/v1/results?select=student_name,class_name,mission_id,score,total,stars,created_at&order=created_at.desc&limit=1000"),
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const [dailyResults, loadedClasses] = await Promise.all([
+      request(`/rest/v1/results?select=student_name,class_name,mission_id,score,total,stars,created_at&created_at=gte.${encodeURIComponent(today.toISOString())}&order=created_at.desc&limit=1000`),
       request("/rest/v1/classes?select=name&order=name")
     ]);
+    results = Core.latestResults(dailyResults);
+    classes = loadedClasses;
     $("loginPanel").classList.add("hidden");
     $("dashboardPanel").classList.remove("hidden");
     renderClasses();
     render();
-    $("refreshStatus").textContent = `✅ Markah dikemas kini pada ${new Date().toLocaleTimeString("ms-MY", { hour: "2-digit", minute: "2-digit" })}. Auto-segar setiap 15 saat.`;
+    $("refreshStatus").textContent = `✅ Markah hari ini dikemas kini pada ${new Date().toLocaleTimeString("ms-MY", { hour: "2-digit", minute: "2-digit" })}. Auto-segar setiap 15 saat.`;
   }
 
   function startRefreshing() {
@@ -94,6 +99,7 @@
   $("classFilter").addEventListener("change", render);
   $("nameFilter").addEventListener("input", render);
   $("refreshResults").addEventListener("click", () => { $("refreshStatus").textContent = "Menyegarkan markah…"; loadResults().catch((error) => { $("refreshStatus").textContent = error.message; }); });
+  $("exportPdf").addEventListener("click", () => window.print());
   $("logout").addEventListener("click", () => { sessionStorage.removeItem("teacherToken"); location.reload(); });
   if (sessionStorage.getItem("teacherToken")) loadResults().then(startRefreshing).catch(() => sessionStorage.removeItem("teacherToken"));
 }());
