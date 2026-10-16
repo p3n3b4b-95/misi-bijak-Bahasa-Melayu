@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://misi-bijak.invalid/schemas/words.schema.json",
+  "title": "Misi Bijak words.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "words"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "words": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/word" } }
+  },
+  "$defs": {
+    "word": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "type", "imageId", "audioId", "exampleSentence", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z]{2,12}$" },
+        "text": { "type": "string", "pattern": "^[a-z]{2,12}$" },
+        "type": { "enum": ["vokal", "kv", "kvk"] },
+        "imageId": { "type": "string", "pattern": "^img_[a-z0-9_]{2,40}$" },
+        "audioId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,40}$" },
+        "exampleSentence": { "type": "string", "minLength": 3, "maxLength": 120 },
+        "status": { "enum": ["draft", "reviewed"] }
+      }
+    }
+  }
+}

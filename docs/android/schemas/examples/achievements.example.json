@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "achievements": [
+    {
+      "id": "ach_first_round",
+      "titleKey": "ach_first_round_title",
+      "descriptionKey": "ach_first_round_desc",
+      "iconId": "ic_ach_first_round",
+      "status": "proposed",
+      "rule": {
+        "type": "roundsCompleted",
+        "threshold": 1
+      }
+    },
+    {
+      "id": "ach_rounds_5",
+      "titleKey": "ach_rounds_5_title",
+      "descriptionKey": "ach_rounds_5_desc",
+      "iconId": "ic_ach_rounds_5",
+      "status": "proposed",
+      "rule": {
+        "type": "roundsCompleted",
+        "threshold": 5
+      }
+    },
+    {
+      "id": "ach_rounds_10",
+      "titleKey": "ach_rounds_10_title",
+      "descriptionKey": "ach_rounds_10_desc",
+      "iconId": "ic_ach_rounds_10",
+      "status": "proposed",
+      "rule": {
+        "type": "roundsCompleted",
+        "threshold": 10
+      }
+    },
+    {
+      "id": "ach_first_perfect",
+      "titleKey": "ach_first_perfect_title",
+      "descriptionKey": "ach_first_perfect_desc",
+      "iconId": "ic_ach_first_perfect",
+      "status": "proposed",
+      "rule": {
+        "type": "perfectRounds",
+        "threshold": 1
+      }
+    },
+    {
+      "id": "ach_points_80",
+      "titleKey": "ach_points_80_title",
+      "descriptionKey": "ach_points_80_desc",
+      "iconId": "ic_ach_points_80",
+      "status": "proposed",
+      "rule": {
+        "type": "totalPoints",
+        "threshold": 80
+      }
+    },
+    {
+      "id": "ach_rank_2",
+      "titleKey": "ach_rank_2_title",
+      "descriptionKey": "ach_rank_2_desc",
+      "iconId": "ic_ach_rank_2",
+      "status": "proposed",
+      "rule": {
+        "type": "rankReached",
+        "threshold": 2
+      }
+    },
+    {
+      "id": "ach_rank_3",
+      "titleKey": "ach_rank_3_title",
+      "descriptionKey": "ach_rank_3_desc",
+      "iconId": "ic_ach_rank_3",
+      "status": "proposed",
+      "rule": {
+        "type": "rankReached",
+        "threshold": 3
+      }
+    },
+    {
+      "id": "ach_rank_4",
+      "titleKey": "ach_rank_4_title",
+      "descriptionKey": "ach_rank_4_desc",
+      "iconId": "ic_ach_rank_4",
+      "status": "proposed",
+      "rule": {
+        "type": "rankReached",
+        "threshold": 4
+      }
+    },
+    {
+      "id": "ach_vokal_master",
+      "titleKey": "ach_vokal_master_title",
+      "descriptionKey": "ach_vokal_master_desc",
+      "iconId": "ic_ach_vokal_master",
+      "status": "proposed",
+      "rule": {
+        "type": "missionAllLevels3Stars",
+        "threshold": 1,
+        "missionId": "vokal"
+      }
+    }
+  ]
+}

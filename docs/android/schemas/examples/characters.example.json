@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "characters": [
+    {
+      "id": "char_placeholder_1",
+      "nameKey": "char_placeholder_1_name",
+      "descriptionKey": "char_placeholder_1_desc",
+      "poses": {
+        "idle": "img_char_placeholder_1_idle",
+        "happy": "img_char_placeholder_1_happy",
+        "encouraging": "img_char_placeholder_1_encourage"
+      }
+    },
+    {
+      "id": "char_placeholder_2",
+      "nameKey": "char_placeholder_2_name",
+      "descriptionKey": "char_placeholder_2_desc",
+      "poses": {
+        "idle": "img_char_placeholder_2_idle",
+        "happy": "img_char_placeholder_2_happy",
+        "encouraging": "img_char_placeholder_2_encourage"
+      }
+    },
+    {
+      "id": "char_placeholder_3",
+      "nameKey": "char_placeholder_3_name",
+      "descriptionKey": "char_placeholder_3_desc",
+      "poses": {
+        "idle": "img_char_placeholder_3_idle",
+        "happy": "img_char_placeholder_3_happy",
+        "encouraging": "img_char_placeholder_3_encourage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "words": [
+    {
+      "id": "api",
+      "text": "api",
+      "type": "vokal",
+      "imageId": "img_api",
+      "audioId": "api",
+      "exampleSentence": "Api itu panas.",
+      "status": "draft"
+    },
+    {
+      "id": "epal",
+      "text": "epal",
+      "type": "vokal",
+      "imageId": "img_epal",
+      "audioId": "epal",
+      "exampleSentence": "Epal itu merah.",
+      "status": "draft"
+    },
+    {
+      "id": "ikan",
+      "text": "ikan",
+      "type": "vokal",
+      "imageId": "img_ikan",
+      "audioId": "ikan",
+      "exampleSentence": "Ikan berenang.",
+      "status": "draft"
+    },
+    {
+      "id": "oren",
+      "text": "oren",
+      "type": "vokal",
+      "imageId": "img_oren",
+      "audioId": "oren",
+      "exampleSentence": "Oren itu manis.",
+      "status": "draft"
+    },
+    {
+      "id": "ular",
+      "text": "ular",
+      "type": "vokal",
+      "imageId": "img_ular",
+      "audioId": "ular",
+      "exampleSentence": "Ular itu panjang.",
+      "status": "draft"
+    },
+    {
+      "id": "angsa",
+      "text": "angsa",
+      "type": "vokal",
+      "imageId": "img_angsa",
+      "audioId": "angsa",
+      "exampleSentence": "Angsa itu putih.",
+      "status": "draft"
+    },
+    {
+      "id": "awan",
+      "text": "awan",
+      "type": "vokal",
+      "imageId": "img_awan",
+      "audioId": "awan",
+      "exampleSentence": "Awan bergerak di langit.",
+      "status": "draft"
+    },
+    {
+      "id": "ayam",
+      "text": "ayam",
+      "type": "vokal",
+      "imageId": "img_ayam",
+      "audioId": "ayam",
+      "exampleSentence": "Ayam berkokok pada pagi hari.",
+      "status": "draft"
+    },
+    {
+      "id": "emak",
+      "text": "emak",
+      "type": "vokal",
+      "imageId": "img_emak",
+      "audioId": "emak",
+      "exampleSentence": "Emak memasak nasi.",
+      "status": "draft"
+    },
+    {
+      "id": "enjin",
+      "text": "enjin",
+      "type": "vokal",
+      "imageId": "img_enjin",
+      "audioId": "enjin",
+      "exampleSentence": "Enjin kereta sedang hidup.",
+      "status": "draft"
+    },
+    {
+      "id": "itik",
+      "text": "itik",
+      "type": "vokal",
+      "imageId": "img_itik",
+      "audioId": "itik",
+      "exampleSentence": "Itik berenang di kolam.",
+      "status": "draft"
+    },
+    {
+      "id": "obor",
+      "text": "obor",
+      "type": "vokal",
+      "imageId": "img_obor",
+      "audioId": "obor",
+      "exampleSentence": "Obor itu menyala.",
+      "status": "draft"
+    },
+    {
+      "id": "ombak",
+      "text": "ombak",
+      "type": "vokal",
+      "imageId": "img_ombak",
+      "audioId": "ombak",
+      "exampleSentence": "Ombak memukul pantai.",
+      "status": "draft"
+    },
+    {
+      "id": "ubi",
+      "text": "ubi",
+      "type": "vokal",
+      "imageId": "img_ubi",
+      "audioId": "ubi",
+      "exampleSentence": "Ubi itu sedap.",
+      "status": "draft"
+    },
+    {
+      "id": "udang",
+      "text": "udang",
+      "type": "vokal",
+      "imageId": "img_udang",
+      "audioId": "udang",
+      "exampleSentence": "Udang hidup di dalam air.",
+      "status": "draft"
+    },
+    {
+      "id": "unta",
+      "text": "unta",
+      "type": "vokal",
+      "imageId": "img_unta",
+      "audioId": "unta",
+      "exampleSentence": "Unta berjalan di gurun.",
+      "status": "draft"
+    },
+    {
+      "id": "baju",
+      "text": "baju",
+      "type": "kv",
+      "imageId": "img_baju",
+      "audioId": "baju",
+      "exampleSentence": "Ini baju saya.",
+      "status": "draft"
+    },
+    {
+      "id": "bola",
+      "text": "bola",
+      "type": "kv",
+      "imageId": "img_bola",
+      "audioId": "bola",
+      "exampleSentence": "Ali sepak bola.",
+      "status": "draft"
+    },
+    {
+      "id": "buku",
+      "text": "buku",
+      "type": "kv",
+      "imageId": "img_buku",
+      "audioId": "buku",
+      "exampleSentence": "Siti baca buku.",
+      "status": "draft"
+    },
+    {
+      "id": "gigi",
+      "text": "gigi",
+      "type": "kv",
+      "imageId": "img_gigi",
+      "audioId": "gigi",
+      "exampleSentence": "Gigi saya bersih.",
+      "status": "draft"
+    },
+    {
+      "id": "kaki",
+      "text": "kaki",
+      "type": "kv",
+      "imageId": "img_kaki",
+      "audioId": "kaki",
+      "exampleSentence": "Ini kaki saya.",
+      "status": "draft"
+    },
+    {
+      "id": "mata",
+      "text": "mata",
+      "type": "kv",
+      "imageId": "img_mata",
+      "audioId": "mata",
+      "exampleSentence": "Mata untuk melihat.",
+      "status": "draft"
+    },
+    {
+      "id": "roti",
+      "text": "roti",
+      "type": "kv",
+      "imageId": "img_roti",
+      "audioId": "roti",
+      "exampleSentence": "Saya makan roti.",
+      "status": "draft"
+    },
+    {
+      "id": "susu",
+      "text": "susu",
+      "type": "kv",
+      "imageId": "img_susu",
+      "audioId": "susu",
+      "exampleSentence": "Adik minum susu.",
+      "status": "draft"
+    },
+    {
+      "id": "topi",
+      "text": "topi",
+      "type": "kv",
+      "imageId": "img_topi",
+      "audioId": "topi",
+      "exampleSentence": "Amin pakai topi.",
+      "status": "draft"
+    },
+    {
+      "id": "cili",
+      "text": "cili",
+      "type": "kv",
+      "imageId": "img_cili",
+      "audioId": "cili",
+      "exampleSentence": "Cili itu pedas.",
+      "status": "draft"
+    },
+    {
+      "id": "dadu",
+      "text": "dadu",
+      "type": "kv",
+      "imageId": "img_dadu",
+      "audioId": "dadu",
+      "exampleSentence": "Dadu ada enam muka.",
+      "status": "draft"
+    },
+    {
+      "id": "kuda",
+      "text": "kuda",
+      "type": "kv",
+      "imageId": "img_kuda",
+      "audioId": "kuda",
+      "exampleSentence": "Kuda berlari laju.",
+      "status": "draft"
+    },
+    {
+      "id": "meja",
+      "text": "meja",
+      "type": "kv",
+      "imageId": "img_meja",
+      "audioId": "meja",
+      "exampleSentence": "Buku di atas meja.",
+      "status": "draft"
+    },
+    {
+      "id": "nasi",
+      "text": "nasi",
+      "type": "kv",
+      "imageId": "img_nasi",
+      "audioId": "nasi",
+      "exampleSentence": "Saya makan nasi.",
+      "status": "draft"
+    },
+    {
+      "id": "sawi",
+      "text": "sawi",
+      "type": "kv",
+      "imageId": "img_sawi",
+      "audioId": "sawi",
+      "exampleSentence": "Sawi ialah sayur.",
+      "status": "draft"
+    },
+    {
+      "id": "sofa",
+      "text": "sofa",
+      "type": "kv",
+      "imageId": "img_sofa",
+      "audioId": "sofa",
+      "exampleSentence": "Ayah duduk di sofa.",
+      "status": "draft"
+    },
+    {
+      "id": "bas",
+      "text": "bas",
+      "type": "kvk",
+      "imageId": "img_bas",
+      "audioId": "bas",
+      "exampleSentence": "Saya naik bas.",
+      "status": "draft"
+    },
+    {
+      "id": "beg",
+      "text": "beg",
+      "type": "kvk",
+      "imageId": "img_beg",
+      "audioId": "beg",
+      "exampleSentence": "Beg itu berat.",
+      "status": "draft"
+    },
+    {
+      "id": "cat",
+      "text": "cat",
+      "type": "kvk",
+      "imageId": "img_cat",
+      "audioId": "cat",
+      "exampleSentence": "Cat itu biru.",
+      "status": "draft"
+    },
+    {
+      "id": "jam",
+      "text": "jam",
+      "type": "kvk",
+      "imageId": "img_jam",
+      "audioId": "jam",
+      "exampleSentence": "Jam sudah berbunyi.",
+      "status": "draft"
+    },
+    {
+      "id": "kek",
+      "text": "kek",
+      "type": "kvk",
+      "imageId": "img_kek",
+      "audioId": "kek",
+      "exampleSentence": "Kek itu sedap.",
+      "status": "draft"
+    },
+    {
+      "id": "pen",
+      "text": "pen",
+      "type": "kvk",
+      "imageId": "img_pen",
+      "audioId": "pen",
+      "exampleSentence": "Saya ada pen.",
+      "status": "draft"
+    },
+    {
+      "id": "rak",
+      "text": "rak",
+      "type": "kvk",
+      "imageId": "img_rak",
+      "audioId": "rak",
+      "exampleSentence": "Buku di atas rak.",
+      "status": "draft"
+    },
+    {
+      "id": "van",
+      "text": "van",
+      "type": "kvk",
+      "imageId": "img_van",
+      "audioId": "van",
+      "exampleSentence": "Van itu putih.",
+      "status": "draft"
+    },
+    {
+      "id": "bom",
+      "text": "bom",
+      "type": "kvk",
+      "imageId": "img_bom",
+      "audioId": "bom",
+      "exampleSentence": "Bom itu berbahaya.",
+      "status": "draft"
+    },
+    {
+      "id": "gam",
+      "text": "gam",
+      "type": "kvk",
+      "imageId": "img_gam",
+      "audioId": "gam",
+      "exampleSentence": "Gam melekatkan kertas.",
+      "status": "draft"
+    },
+    {
+      "id": "jus",
+      "text": "jus",
+      "type": "kvk",
+      "imageId": "img_jus",
+      "audioId": "jus",
+      "exampleSentence": "Saya minum jus.",
+      "status": "draft"
+    },
+    {
+      "id": "tin",
+      "text": "tin",
+      "type": "kvk",
+      "imageId": "img_tin",
+      "audioId": "tin",
+      "exampleSentence": "Tin itu kosong.",
+      "status": "draft"
+    },
+    {
+      "id": "zip",
+      "text": "zip",
+      "type": "kvk",
+      "imageId": "img_zip",
+      "audioId": "zip",
+      "exampleSentence": "Zip beg itu rosak.",
+      "status": "draft"
+    },
+    {
+      "id": "bot",
+      "text": "bot",
+      "type": "kvk",
+      "imageId": "img_bot",
+      "audioId": "bot",
+      "exampleSentence": "Bot belayar di laut.",
+      "status": "draft"
+    },
+    {
+      "id": "mop",
+      "text": "mop",
+      "type": "kvk",
+      "imageId": "img_mop",
+      "audioId": "mop",
+      "exampleSentence": "Mop digunakan untuk mencuci lantai.",
+      "status": "draft"
+    },
+    {
+      "id": "sos",
+      "text": "sos",
+      "type": "kvk",
+      "imageId": "img_sos",
+      "audioId": "sos",
+      "exampleSentence": "Sos itu manis.",
+      "status": "draft"
+    }
+  ]
+}

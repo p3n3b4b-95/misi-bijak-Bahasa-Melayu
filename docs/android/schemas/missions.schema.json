@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://misi-bijak.invalid/schemas/missions.schema.json",
+  "title": "Misi Bijak missions.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "missions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "missions": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "$ref": "#/$defs/mission" } }
+  },
+  "$defs": {
+    "mission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "order", "titleKey", "descriptionKey", "iconId", "tone", "pool", "levels"],
+      "properties": {
+        "id": { "enum": ["vokal", "kv", "kvk", "padan", "susun", "ayat"] },
+        "order": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "titleKey": { "type": "string", "pattern": "^mission_[a-z]+_title$" },
+        "descriptionKey": { "type": "string", "pattern": "^mission_[a-z]+_desc$" },
+        "iconId": { "type": "string", "pattern": "^ic_[a-z0-9_]{2,40}$" },
+        "tone": { "enum": ["pink", "blue", "yellow", "mint", "purple", "orange"] },
+        "unlockAfter": {
+          "description": "Mission unlocks once this level of the earlier mission has >= 1 star. Absent on the first mission. PROVISIONAL: Cowlick must confirm the rule (see 01-decisions Q1).",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["missionId", "levelIndex"],
+          "properties": {
+            "missionId": { "enum": ["vokal", "kv", "kvk", "padan", "susun", "ayat"] },
+            "levelIndex": { "type": "integer", "minimum": 1, "maximum": 3 }
+          }
+        },
+        "pool": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "wordType"],
+          "properties": {
+            "source": { "enum": ["words", "sentences"] },
+            "wordType": { "enum": ["vokal", "kv", "kvk", "any"] }
+          }
+        },
+        "levels": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/level" } }
+      }
+    },
+    "level": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "questionCount", "optionCount", "showPicture", "autoPlayVoice", "starsRequiredToUnlockNext"],
+      "properties": {
+        "index": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "questionCount": { "type": "integer", "minimum": 5, "maximum": 12 },
+        "optionCount": { "type": "integer", "minimum": 2, "maximum": 5 },
+        "showPicture": { "type": "boolean" },
+        "autoPlayVoice": { "type": "boolean" },
+        "starsRequiredToUnlockNext": { "const": 1 }
+      }
+    }
+  }
+}

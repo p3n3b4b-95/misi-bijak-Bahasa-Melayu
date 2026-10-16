@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "missions": [
+    {
+      "id": "vokal",
+      "order": 1,
+      "titleKey": "mission_vokal_title",
+      "descriptionKey": "mission_vokal_desc",
+      "iconId": "ic_mission_vokal",
+      "tone": "pink",
+      "pool": {
+        "source": "words",
+        "wordType": "vokal"
+      },
+      "levels": [
+        {
+          "index": 1,
+          "questionCount": 8,
+          "optionCount": 3,
+          "showPicture": true,
+          "autoPlayVoice": true,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 2,
+          "questionCount": 8,
+          "optionCount": 5,
+          "showPicture": true,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 3,
+          "questionCount": 8,
+          "optionCount": 5,
+          "showPicture": false,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        }
+      ]
+    },
+    {
+      "id": "kv",
+      "order": 2,
+      "titleKey": "mission_kv_title",
+      "descriptionKey": "mission_kv_desc",
+      "iconId": "ic_mission_kv",
+      "tone": "blue",
+      "unlockAfter": {
+        "missionId": "vokal",
+        "levelIndex": 1
+      },
+      "pool": {
+        "source": "words",
+        "wordType": "kv"
+      },
+      "levels": [
+        {
+          "index": 1,
+          "questionCount": 8,
+          "optionCount": 3,
+          "showPicture": true,
+          "autoPlayVoice": true,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 2,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": true,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 3,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": false,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        }
+      ]
+    },
+    {
+      "id": "kvk",
+      "order": 3,
+      "titleKey": "mission_kvk_title",
+      "descriptionKey": "mission_kvk_desc",
+      "iconId": "ic_mission_kvk",
+      "tone": "yellow",
+      "unlockAfter": {
+        "missionId": "kv",
+        "levelIndex": 1
+      },
+      "pool": {
+        "source": "words",
+        "wordType": "kvk"
+      },
+      "levels": [
+        {
+          "index": 1,
+          "questionCount": 8,
+          "optionCount": 3,
+          "showPicture": true,
+          "autoPlayVoice": true,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 2,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": true,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 3,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": false,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        }
+      ]
+    },
+    {
+      "id": "padan",
+      "order": 4,
+      "titleKey": "mission_padan_title",
+      "descriptionKey": "mission_padan_desc",
+      "iconId": "ic_mission_padan",
+      "tone": "mint",
+      "unlockAfter": {
+        "missionId": "kvk",
+        "levelIndex": 1
+      },
+      "pool": {
+        "source": "words",
+        "wordType": "any"
+      },
+      "levels": [
+        {
+          "index": 1,
+          "questionCount": 8,
+          "optionCount": 3,
+          "showPicture": true,
+          "autoPlayVoice": true,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 2,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": true,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 3,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": false,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        }
+      ]
+    },
+    {
+      "id": "susun",
+      "order": 5,
+      "titleKey": "mission_susun_title",
+      "descriptionKey": "mission_susun_desc",
+      "iconId": "ic_mission_susun",
+      "tone": "purple",
+      "unlockAfter": {
+        "missionId": "padan",
+        "levelIndex": 1
+      },
+      "pool": {
+        "source": "words",
+        "wordType": "any"
+      },
+      "levels": [
+        {
+          "index": 1,
+          "questionCount": 8,
+          "optionCount": 3,
+          "showPicture": true,
+          "autoPlayVoice": true,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 2,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": true,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 3,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": false,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        }
+      ]
+    },
+    {
+      "id": "ayat",
+      "order": 6,
+      "titleKey": "mission_ayat_title",
+      "descriptionKey": "mission_ayat_desc",
+      "iconId": "ic_mission_ayat",
+      "tone": "orange",
+      "unlockAfter": {
+        "missionId": "susun",
+        "levelIndex": 1
+      },
+      "pool": {
+        "source": "sentences",
+        "wordType": "any"
+      },
+      "levels": [
+        {
+          "index": 1,
+          "questionCount": 8,
+          "optionCount": 3,
+          "showPicture": true,
+          "autoPlayVoice": true,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 2,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": true,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        },
+        {
+          "index": 3,
+          "questionCount": 8,
+          "optionCount": 4,
+          "showPicture": false,
+          "autoPlayVoice": false,
+          "starsRequiredToUnlockNext": 1
+        }
+      ]
+    }
+  ]
+}

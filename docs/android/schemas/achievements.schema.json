@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://misi-bijak.invalid/schemas/achievements.schema.json",
+  "title": "Misi Bijak achievements.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "achievements"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "achievements": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/achievement" } }
+  },
+  "$defs": {
+    "achievement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "titleKey", "descriptionKey", "iconId", "rule", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^ach_[a-z0-9_]{2,30}$" },
+        "titleKey": { "type": "string", "pattern": "^ach_[a-z0-9_]+_title$" },
+        "descriptionKey": { "type": "string", "pattern": "^ach_[a-z0-9_]+_desc$" },
+        "iconId": { "type": "string", "pattern": "^ic_[a-z0-9_]{2,40}$" },
+        "status": { "enum": ["proposed", "approved"] },
+        "rule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "threshold"],
+          "properties": {
+            "type": { "enum": ["roundsCompleted", "totalPoints", "perfectRounds", "missionAllLevels3Stars", "rankReached"] },
+            "threshold": { "type": "integer", "minimum": 1 },
+            "missionId": { "enum": ["vokal", "kv", "kvk", "padan", "susun", "ayat"] }
+          }
+        }
+      }
+    }
+  }
+}

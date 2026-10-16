@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://misi-bijak.invalid/schemas/sentences.schema.json",
+  "title": "Misi Bijak sentences.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "sentences"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "sentences": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/sentence" } }
+  },
+  "$defs": {
+    "sentence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "textWithBlank", "answer", "imageId", "audioId", "distractors", "status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^sent_[a-z0-9_]{2,30}$" },
+        "textWithBlank": { "type": "string", "maxLength": 120, "pattern": "^(?:(?!____).)*____(?:(?!____).)*$" },
+        "answer": { "type": "string", "pattern": "^[a-z]{2,12}$" },
+        "acceptableAnswers": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]{2,12}$" }, "uniqueItems": true },
+        "imageId": { "type": "string", "pattern": "^img_[a-z0-9_]{2,40}$" },
+        "audioId": { "type": "string", "pattern": "^ayat-[a-z]{2,12}$" },
+        "distractors": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]{2,12}$" }, "uniqueItems": true, "maxItems": 8 },
+        "status": { "enum": ["draft", "reviewed"] }
+      },
+      "if": { "properties": { "status": { "const": "reviewed" } }, "required": ["status"] },
+      "then": { "properties": { "distractors": { "type": "array", "minItems": 3 } } }
+    }
+  }
+}

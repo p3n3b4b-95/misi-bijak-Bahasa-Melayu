@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://misi-bijak.invalid/schemas/characters.schema.json",
+  "title": "Misi Bijak characters.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "characters"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contentVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "characters": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "$ref": "#/$defs/character" } }
+  },
+  "$defs": {
+    "character": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "nameKey", "descriptionKey", "poses"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^char_[a-z0-9_]{2,20}$" },
+        "nameKey": { "type": "string", "pattern": "^char_[a-z0-9_]+_name$" },
+        "descriptionKey": { "type": "string", "pattern": "^char_[a-z0-9_]+_desc$" },
+        "poses": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["idle", "happy", "encouraging"],
+          "properties": {
+            "idle": { "type": "string", "pattern": "^img_char_[a-z0-9_]+$" },
+            "happy": { "type": "string", "pattern": "^img_char_[a-z0-9_]+$" },
+            "encouraging": { "type": "string", "pattern": "^img_char_[a-z0-9_]+$" }
+          }
+        }
+      }
+    }
+  }
+}

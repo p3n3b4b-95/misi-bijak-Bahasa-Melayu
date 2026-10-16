@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "sentences": [
+    {
+      "id": "sent_roti",
+      "textWithBlank": "Sarapan saya ialah ____.",
+      "answer": "roti",
+      "imageId": "img_roti",
+      "audioId": "ayat-roti",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_susu",
+      "textWithBlank": "Adik minum ____.",
+      "answer": "susu",
+      "imageId": "img_susu",
+      "audioId": "ayat-susu",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_bola",
+      "textWithBlank": "Ali sepak ____.",
+      "answer": "bola",
+      "imageId": "img_bola",
+      "audioId": "ayat-bola",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_buku",
+      "textWithBlank": "Siti baca ____.",
+      "answer": "buku",
+      "imageId": "img_buku",
+      "audioId": "ayat-buku",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_topi",
+      "textWithBlank": "Amin pakai ____.",
+      "answer": "topi",
+      "imageId": "img_topi",
+      "audioId": "ayat-topi",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_bas",
+      "textWithBlank": "Saya naik ____.",
+      "answer": "bas",
+      "imageId": "img_bas",
+      "audioId": "ayat-bas",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_mata",
+      "textWithBlank": "Kita lihat dengan ____.",
+      "answer": "mata",
+      "imageId": "img_mata",
+      "audioId": "ayat-mata",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_rak",
+      "textWithBlank": "Saya susun buku di ____.",
+      "answer": "rak",
+      "imageId": "img_rak",
+      "audioId": "ayat-rak",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_pen",
+      "textWithBlank": "Saya menulis dengan ____.",
+      "answer": "pen",
+      "imageId": "img_pen",
+      "audioId": "ayat-pen",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_kek",
+      "textWithBlank": "Ibu potong ____.",
+      "answer": "kek",
+      "imageId": "img_kek",
+      "audioId": "ayat-kek",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_nasi",
+      "textWithBlank": "Ibu menghidang ____.",
+      "answer": "nasi",
+      "imageId": "img_nasi",
+      "audioId": "ayat-nasi",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_meja",
+      "textWithBlank": "Pinggan diletak di atas ____.",
+      "answer": "meja",
+      "imageId": "img_meja",
+      "audioId": "ayat-meja",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_jus",
+      "textWithBlank": "Saya minum ____.",
+      "answer": "jus",
+      "imageId": "img_jus",
+      "audioId": "ayat-jus",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_laju",
+      "textWithBlank": "Kuda berlari ____.",
+      "answer": "laju",
+      "imageId": "img_laju",
+      "audioId": "ayat-laju",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_api",
+      "textWithBlank": "Lilin menghasilkan ____.",
+      "answer": "api",
+      "imageId": "img_api",
+      "audioId": "ayat-api",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_epal",
+      "textWithBlank": "Buah merah itu ialah ____.",
+      "answer": "epal",
+      "imageId": "img_epal",
+      "audioId": "ayat-epal",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_ikan",
+      "textWithBlank": "Haiwan bersisik itu ialah ____.",
+      "answer": "ikan",
+      "imageId": "img_ikan",
+      "audioId": "ayat-ikan",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_oren",
+      "textWithBlank": "Saya mengupas buah ____.",
+      "answer": "oren",
+      "imageId": "img_oren",
+      "audioId": "ayat-oren",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_ular",
+      "textWithBlank": "Haiwan panjang itu ialah ____.",
+      "answer": "ular",
+      "imageId": "img_ular",
+      "audioId": "ayat-ular",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_baju",
+      "textWithBlank": "Saya memakai ____.",
+      "answer": "baju",
+      "imageId": "img_baju",
+      "audioId": "ayat-baju",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_gigi",
+      "textWithBlank": "Saya menggosok ____.",
+      "answer": "gigi",
+      "imageId": "img_gigi",
+      "audioId": "ayat-gigi",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_kaki",
+      "textWithBlank": "Saya berjalan dengan ____.",
+      "answer": "kaki",
+      "imageId": "img_kaki",
+      "audioId": "ayat-kaki",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_cili",
+      "textWithBlank": "Rasa ____ itu pedas.",
+      "answer": "cili",
+      "imageId": "img_cili",
+      "audioId": "ayat-cili",
+      "distractors": [],
+      "status": "draft"
+    },
+    {
+      "id": "sent_dadu",
+      "textWithBlank": "Saya membaling ____.",
+      "answer": "dadu",
+      "imageId": "img_dadu",
+      "audioId": "ayat-dadu",
+      "distractors": [],
+      "status": "draft"
+    }
+  ]
+}
