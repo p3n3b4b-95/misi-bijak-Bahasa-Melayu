@@ -1,6 +1,6 @@
 # Android app — planning documents
 
-Documentation for the planned offline Android version of Misi Bijak Bahasa Melayu. No Android code exists yet. The web game at the repository root is unaffected.
+Documentation for the planned offline Android version of Misi Bijak Bahasa Melayu. The Android project (M0 + UI-01) lives in `../../android/`; later screens are specification only. The web game at the repository root is unaffected.
 
 | Read first | |
 |---|---|
@@ -14,7 +14,7 @@ Documentation for the planned offline Android version of Misi Bijak Bahasa Melay
 | [`02-architecture.md`](02-architecture.md) | Layers, packages, runtime flows (diagrams) |
 | [`03-navigation-contracts.md`](03-navigation-contracts.md) | Routes, guards, back-stack rules |
 | [`04-domain-and-content.md`](04-domain-and-content.md) | Domain model, Room model, content JSON |
-| [`05-screen-spec.md`](05-screen-spec.md) | Screens, states, accessibility, copy draft (design board pending) |
+| [`05-screen-spec.md`](05-screen-spec.md) | Screens, states, accessibility, copy draft (from Design Board V1) |
 | [`06-pages-isolation-plan.md`](06-pages-isolation-plan.md) | Keeping non-web files off GitHub Pages |
 | [`07-privacy-remediation-proposal.md`](07-privacy-remediation-proposal.md) | Web app data-handling proposal |
 | [`08-licensing-audit.md`](08-licensing-audit.md) | Audio, pictures, fonts; [`asset-register.csv`](asset-register.csv) |
