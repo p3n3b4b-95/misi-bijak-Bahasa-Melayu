@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,11 +40,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.github.p3n3b495.misibijak.R
-import io.github.p3n3b495.misibijak.ui.components.BoyMascot
+import io.github.p3n3b495.misibijak.ui.components.AmirMascot
 import io.github.p3n3b495.misibijak.ui.components.GameTitle
 import io.github.p3n3b495.misibijak.ui.components.LoadingBar
 import io.github.p3n3b495.misibijak.ui.components.SceneBackground
 import io.github.p3n3b495.misibijak.ui.components.SceneVariant
+import io.github.p3n3b495.misibijak.ui.components.TitleVariant
 import io.github.p3n3b495.misibijak.ui.theme.Dimens
 import io.github.p3n3b495.misibijak.ui.theme.MisiBijakTheme
 import io.github.p3n3b495.misibijak.ui.theme.Nunito
@@ -93,7 +93,7 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                            GameTitle(line1Color = Color(Palette.TITLE_YELLOW), modifier = Modifier.fillMaxWidth(0.9f))
+                            GameTitle(variant = TitleVariant.Splash, modifier = Modifier.fillMaxWidth(0.94f))
                             Spacer(Modifier.height(Dimens.Space24))
                             LoadingBlock(
                                 progress,
@@ -102,7 +102,7 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                                     .padding(Dimens.Space16),
                             )
                         }
-                        BoyMascot(Modifier.weight(1f).fillMaxHeight(0.85f))
+                        AmirMascot(Modifier.weight(1f).fillMaxHeight(0.85f))
                     }
                 } else {
                     Column(
@@ -110,10 +110,10 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                             .padding(horizontal = Dimens.Space24),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Spacer(Modifier.height(contentHeight * 0.14f))
-                        GameTitle(line1Color = Color(Palette.TITLE_YELLOW), modifier = Modifier.fillMaxWidth(0.92f))
+                        Spacer(Modifier.height(contentHeight * 0.17f))
+                        GameTitle(variant = TitleVariant.Splash, modifier = Modifier.fillMaxWidth(0.94f))
                         Spacer(Modifier.weight(1f))
-                        BoyMascot(Modifier.fillMaxWidth(0.62f).aspectRatio(100f / 125f))
+                        AmirMascot(Modifier.fillMaxWidth(0.80f))
                         Spacer(Modifier.weight(0.35f))
                         LoadingBlock(progress, Modifier.fillMaxWidth(0.66f))
                         Spacer(Modifier.height(contentHeight * 0.05f))

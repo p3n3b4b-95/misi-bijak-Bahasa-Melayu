@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,10 +19,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.zIndex
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.p3n3b495.misibijak.R
@@ -42,6 +39,7 @@ import io.github.p3n3b495.misibijak.ui.components.PillButton
 import io.github.p3n3b495.misibijak.ui.components.RoundIconButton
 import io.github.p3n3b495.misibijak.ui.components.SceneBackground
 import io.github.p3n3b495.misibijak.ui.components.SceneVariant
+import io.github.p3n3b495.misibijak.ui.components.TitleVariant
 import io.github.p3n3b495.misibijak.ui.theme.Dimens
 import io.github.p3n3b495.misibijak.ui.theme.MisiBijakTheme
 import io.github.p3n3b495.misibijak.ui.theme.Palette
@@ -86,9 +84,9 @@ fun MainMenuScreen(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                            GameTitle(line1Color = Color(Palette.TITLE_ORANGE), modifier = Modifier.fillMaxWidth(0.9f))
+                            GameTitle(variant = TitleVariant.Menu, modifier = Modifier.fillMaxWidth(0.94f))
                             Spacer(Modifier.height(Dimens.Space16))
-                            CatMascot(Modifier.fillMaxWidth(0.5f).aspectRatio(100f / 78f))
+                            CatMascot(Modifier.fillMaxWidth(0.6f))
                         }
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             // Panel keeps captions off the scenery (trees sit behind this column in landscape).
@@ -107,12 +105,12 @@ fun MainMenuScreen(
                             .padding(horizontal = Dimens.Space24),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Spacer(Modifier.height(contentHeight * 0.12f))
-                        GameTitle(line1Color = Color(Palette.TITLE_ORANGE), modifier = Modifier.fillMaxWidth(0.92f))
+                        Spacer(Modifier.height(contentHeight * 0.13f))
+                        GameTitle(variant = TitleVariant.Menu, modifier = Modifier.fillMaxWidth(0.94f))
                         Spacer(Modifier.weight(1f))
-                        CatMascot(Modifier.fillMaxWidth(0.55f).aspectRatio(100f / 78f))
+                        CatMascot(Modifier.fillMaxWidth(0.74f).zIndex(1f))
                         Actions(onPlay, onSettings, onProfile, onExit)
-                        Spacer(Modifier.height(contentHeight * 0.09f))
+                        Spacer(Modifier.height(contentHeight * 0.07f))
                     }
                 }
             }
@@ -127,13 +125,13 @@ private fun Actions(onPlay: () -> Unit, onSettings: () -> Unit, onProfile: () ->
             label = stringResource(R.string.menu_play),
             contentDescription = stringResource(R.string.menu_play_description),
             onClick = onPlay,
-            modifier = Modifier.fillMaxWidth(0.82f),
+            modifier = Modifier.fillMaxWidth(0.82f).offset(y = (-12).dp),
         )
         Spacer(Modifier.height(Dimens.Space24))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
-            RoundIconButton(Icons.Filled.Settings, stringResource(R.string.menu_settings), Color(Palette.ICON_SETTINGS), onSettings)
-            RoundIconButton(Icons.Filled.Person, stringResource(R.string.menu_profile), Color(Palette.ICON_PROFILE), onProfile)
-            RoundIconButton(Icons.Filled.ExitToApp, stringResource(R.string.menu_exit), Color(Palette.ICON_EXIT), onExit)
+            RoundIconButton(R.drawable.icon_settings, stringResource(R.string.menu_settings), onSettings)
+            RoundIconButton(R.drawable.icon_profile, stringResource(R.string.menu_profile), onProfile)
+            RoundIconButton(R.drawable.icon_exit, stringResource(R.string.menu_exit), onExit)
         }
     }
 }

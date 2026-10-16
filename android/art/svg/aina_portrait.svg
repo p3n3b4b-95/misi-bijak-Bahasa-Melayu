@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1100" viewBox="0 150 1000 1100">
+  <!-- Aina: original character illustration for Misi Bijak. Hand-authored SVG, no third-party art. -->
+  <defs>
+    <linearGradient id="hijab" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFBDD8"/><stop offset="0.6" stop-color="#F59CC0"/><stop offset="1" stop-color="#E983AE"/>
+    </linearGradient>
+    <linearGradient id="hijabFront" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC6DE"/><stop offset="1" stop-color="#EE8DB6"/>
+    </linearGradient>
+    <linearGradient id="skinF" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE3C8"/><stop offset="0.7" stop-color="#FACBA6"/><stop offset="1" stop-color="#F0B48C"/>
+    </linearGradient>
+    <linearGradient id="sleeve" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFC9DD"/><stop offset="1" stop-color="#F6A5C4"/>
+    </linearGradient>
+    <linearGradient id="denim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C9DF0"/><stop offset="1" stop-color="#2D76D4"/>
+    </linearGradient>
+  </defs>
+  <g stroke="#5A2B3F" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- pink long-sleeve top and sleeves -->
+    <path d="M304,790 C238,830 204,950 196,1250 L334,1250 C334,1090 352,970 384,870 Z" fill="url(#sleeve)"/>
+    <path d="M696,790 C762,830 796,950 804,1250 L666,1250 C666,1090 648,970 616,870 Z" fill="url(#sleeve)"/>
+    <path d="M330,860 L670,860 L670,1250 L330,1250 Z" fill="url(#sleeve)"/>
+    <path d="M214,1120 C240,1132 306,1132 326,1120 M674,1120 C694,1132 760,1132 786,1120" fill="none" stroke="#D9709B" stroke-width="5" opacity="0.6"/>
+
+    <!-- denim dungarees: bib and straps -->
+    <path d="M364,1010 L636,1010 C648,1090 652,1170 654,1250 L346,1250 C348,1170 352,1090 364,1010 Z" fill="url(#denim)"/>
+    <path d="M400,1010 C396,960 398,930 404,900 L440,900 C438,940 440,980 444,1010 Z" fill="url(#denim)"/>
+    <path d="M600,1010 C604,960 602,930 596,900 L560,900 C562,940 560,980 556,1010 Z" fill="url(#denim)"/>
+    <circle cx="414" cy="1040" r="15" fill="#FFD54A"/><circle cx="586" cy="1040" r="15" fill="#FFD54A"/>
+    <rect x="442" y="1110" width="116" height="84" rx="14" fill="#2D76D4" opacity="0.75"/>
+
+    <!-- hijab: back layer around the head -->
+    <path d="M262,430 C262,252 366,166 500,166 C634,166 738,252 738,430 C738,560 712,650 652,716 L348,716 C288,650 262,560 262,430 Z" fill="url(#hijab)"/>
+
+    <!-- hijab: bell-shaped drape over shoulders and chest -->
+    <path d="M338,700 C268,730 224,792 208,884 C238,934 330,962 420,1008 C458,1028 480,1040 500,1052 C520,1040 542,1028 580,1008 C670,962 762,934 792,884 C776,792 732,730 662,700 Z" fill="url(#hijabFront)"/>
+    <path d="M352,730 C340,800 380,900 500,1052 M648,730 C660,800 620,900 500,1052 M286,790 C300,860 360,930 440,990 M714,790 C700,860 640,930 560,990" fill="none" stroke="#D9709B" stroke-width="6" opacity="0.5"/>
+
+    <!-- face -->
+    <path d="M344,470 C344,380 410,328 500,328 C590,328 656,380 656,470 C656,580 592,656 500,656 C408,656 344,580 344,470 Z" fill="url(#skinF)"/>
+
+    <!-- hijab frame over forehead and cheek edges -->
+    <path d="M326,448 C332,340 410,282 500,280 C590,282 668,340 674,448 C646,392 584,356 500,356 C416,356 354,392 326,448 Z" fill="url(#hijab)"/>
+    <path d="M326,448 C316,540 338,620 392,676 C372,620 356,552 360,484 C350,470 338,458 326,448 Z" fill="url(#hijab)"/>
+    <path d="M674,448 C684,540 662,620 608,676 C628,620 644,552 640,484 C650,470 662,458 674,448 Z" fill="url(#hijab)"/>
+    <path d="M360,420 C400,386 450,372 500,372 C550,372 600,386 640,420" fill="none" stroke="#FFD3E6" stroke-width="10" opacity="0.7"/>
+
+    <!-- eyes, brows, cheeks, nose, mouth -->
+    <path d="M394,432 C412,414 446,414 464,430 M536,430 C554,414 588,414 606,432" fill="none" stroke="#6B3B2A" stroke-width="9"/>
+    <ellipse cx="428" cy="494" rx="34" ry="42" fill="#2A1710" stroke="none"/>
+    <ellipse cx="572" cy="494" rx="34" ry="42" fill="#2A1710" stroke="none"/>
+    <path d="M388,476 C396,452 460,452 468,476" fill="none" stroke="#2A1710" stroke-width="8"/>
+    <path d="M532,476 C540,452 604,452 612,476" fill="none" stroke="#2A1710" stroke-width="8"/>
+    <path d="M386,484 L370,474 M388,500 L370,504 M614,484 L630,474 M612,500 L630,504" fill="none" stroke="#2A1710" stroke-width="6"/>
+    <circle cx="416" cy="478" r="12" fill="#fff" stroke="none"/><circle cx="444" cy="512" r="6" fill="#fff" stroke="none" opacity="0.9"/>
+    <circle cx="560" cy="478" r="12" fill="#fff" stroke="none"/><circle cx="588" cy="512" r="6" fill="#fff" stroke="none" opacity="0.9"/>
+    <ellipse cx="392" cy="556" rx="34" ry="20" fill="#F78C94" opacity="0.5" stroke="none"/>
+    <ellipse cx="608" cy="556" rx="34" ry="20" fill="#F78C94" opacity="0.5" stroke="none"/>
+    <path d="M492,538 C498,546 504,546 510,538" fill="none" stroke="#C98A62" stroke-width="6"/>
+    <path d="M462,578 C482,606 518,606 538,578 C530,598 514,610 500,610 C486,610 470,598 462,578 Z" fill="#C7364C"/>
+    <path d="M462,578 C482,590 518,590 538,578" fill="none" stroke="#5A2B3F" stroke-width="6"/>
+  </g>
+</svg>

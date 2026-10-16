@@ -1,57 +1,29 @@
 package io.github.p3n3b495.misibijak.ui.components
 
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.clearAndSetSemantics
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
 import io.github.p3n3b495.misibijak.R
-import io.github.p3n3b495.misibijak.ui.theme.Palette
+
+enum class TitleVariant { Splash, Menu }
 
 /**
- * The two-line logo wordmark. Its size follows the available width (not the system font scale)
- * because it is a logo, and it is exposed to TalkBack as one heading.
+ * The two-line logo wordmark as an image (Nunito Black lettering with outline and gloss, original
+ * artwork). It is one heading for TalkBack and never scales with the system font size.
  */
 @Composable
-fun GameTitle(line1Color: Color, modifier: Modifier = Modifier) {
-    val description = stringResource(R.string.title_full)
-    val density = LocalDensity.current
-    BoxWithConstraints(
-        modifier.semantics(mergeDescendants = true) {
-            heading()
-            contentDescription = description
-        },
-    ) {
-        val unit = (maxWidth.value / 8.4f).coerceIn(24f, 60f)
-        // dp -> sp through the density so the logo does not grow with the user's font size.
-        fun logoSp(dp: Float) = with(density) { dp.dp.toSp() }
-        Column(
-            modifier = Modifier.fillMaxWidth().clearAndSetSemantics { },
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            OutlinedText(
-                text = stringResource(R.string.title_line1),
-                fontSize = logoSp(unit * 0.86f),
-                fillColor = line1Color,
-                outlineColor = Color(Palette.INK),
-                outlineWidth = (unit * 0.11f).dp,
-            )
-            OutlinedText(
-                text = stringResource(R.string.title_line2),
-                fontSize = logoSp(unit),
-                fillColor = Color.White,
-                outlineColor = Color(Palette.INK),
-                outlineWidth = (unit * 0.11f).dp,
-            )
-        }
-    }
+fun GameTitle(variant: TitleVariant, modifier: Modifier = Modifier) {
+    val id = if (variant == TitleVariant.Splash) R.drawable.logo_splash else R.drawable.logo_menu
+    Image(
+        painter = painterResource(id),
+        contentDescription = stringResource(R.string.title_full),
+        modifier = modifier.aspectRatio(1600f / 480f).semantics { heading() },
+        contentScale = ContentScale.Fit,
+    )
 }

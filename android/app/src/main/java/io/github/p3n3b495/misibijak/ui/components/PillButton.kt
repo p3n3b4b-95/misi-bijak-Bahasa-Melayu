@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
@@ -71,6 +72,14 @@ fun PillButton(
                 .border(BorderStroke(3.dp, edge), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
+            Box(
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 7.dp, start = 28.dp, end = 28.dp)
+                    .fillMaxWidth()
+                    .height(10.dp)
+                    .background(Color.White.copy(alpha = 0.38f), CircleShape),
+            )
             Text(
                 text = label,
                 color = labelColor,

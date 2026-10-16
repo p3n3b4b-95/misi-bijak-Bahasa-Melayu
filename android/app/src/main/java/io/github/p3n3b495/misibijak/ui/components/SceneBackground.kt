@@ -4,152 +4,114 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.withTransform
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntSize
+import io.github.p3n3b495.misibijak.R
 import io.github.p3n3b495.misibijak.ui.theme.Palette
+import kotlin.math.ceil
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.roundToInt
 
 enum class SceneVariant { Splash, Menu }
 
 /**
- * Original vector scenery (sky, clouds, mountains, hills, winding path, trees) drawn in code.
- * Stand-in for the board's illustrated backgrounds, which were not supplied as asset files.
- * Decorative: hidden from TalkBack.
+ * The adventure meadow: sky, clouds, snow-capped mountains, rolling hills with a winding path,
+ * trees, bushes and rocks. Built from the original sprite set in `res/drawable-nodpi`
+ * (see docs/android/design/ui-01b/asset-spec.md) and laid out relative to the canvas, so it
+ * adapts to phones, tablets and landscape. Decorative: hidden from TalkBack.
  */
 @Composable
 fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
+    val mountains = ImageBitmap.imageResource(R.drawable.mountains)
+    val ground = ImageBitmap.imageResource(R.drawable.ground)
+    val treeA = ImageBitmap.imageResource(R.drawable.tree_a)
+    val treeB = ImageBitmap.imageResource(R.drawable.tree_b)
+    val treeC = ImageBitmap.imageResource(R.drawable.tree_c)
+    val bushA = ImageBitmap.imageResource(R.drawable.bush_a)
+    val bushB = ImageBitmap.imageResource(R.drawable.bush_b)
+    val cloudA = ImageBitmap.imageResource(R.drawable.cloud_a)
+    val cloudB = ImageBitmap.imageResource(R.drawable.cloud_b)
+    val cloudC = ImageBitmap.imageResource(R.drawable.cloud_c)
+    val rocks = ImageBitmap.imageResource(R.drawable.rocks)
+
     Canvas(modifier.fillMaxSize().clearAndSetSemantics { }) {
         val w = size.width
         val h = size.height
-        val horizon = if (variant == SceneVariant.Splash) 0.48f else 0.46f
+        val horizon = h * if (variant == SceneVariant.Splash) 0.46f else 0.44f
+        // Sprite sizes follow this unit so landscape tablets do not get giant trees.
+        val unit = min(w, h * 0.5f)
 
         drawRect(
             brush = Brush.verticalGradient(
                 colors = listOf(Color(Palette.SKY_TOP), Color(Palette.SKY_HORIZON)),
                 startY = 0f,
-                endY = h * (horizon + 0.04f),
-            ),
-            size = Size(w, h),
-        )
-
-        cloud(w * 0.14f, h * 0.05f, w * 0.085f)
-        cloud(w * 0.86f, h * 0.045f, w * 0.07f)
-        cloud(w * 0.70f, h * 0.30f, w * 0.07f)
-
-        // Mountains, far to near.
-        drawPath(
-            smoothClosed(
-                listOf(
-                    Offset(-w * 0.1f, h * horizon + h * 0.02f), Offset(w * 0.08f, h * (horizon - 0.15f)),
-                    Offset(w * 0.25f, h * (horizon - 0.02f)), Offset(w * 0.48f, h * (horizon - 0.21f)),
-                    Offset(w * 0.72f, h * (horizon - 0.03f)), Offset(w * 0.92f, h * (horizon - 0.17f)),
-                    Offset(w * 1.1f, h * horizon + h * 0.02f), Offset(w * 1.1f, h * (horizon + 0.10f)),
-                    Offset(-w * 0.1f, h * (horizon + 0.10f)),
-                ),
-            ),
-            color = Color(Palette.MOUNTAIN_FAR),
-        )
-        drawPath(
-            smoothClosed(
-                listOf(
-                    Offset(-w * 0.1f, h * horizon + h * 0.04f), Offset(w * 0.14f, h * (horizon - 0.11f)),
-                    Offset(w * 0.34f, h * (horizon + 0.01f)), Offset(w * 0.62f, h * (horizon - 0.14f)),
-                    Offset(w * 0.85f, h * (horizon + 0.01f)), Offset(w * 1.1f, h * (horizon - 0.04f)),
-                    Offset(w * 1.1f, h * (horizon + 0.12f)), Offset(-w * 0.1f, h * (horizon + 0.12f)),
-                ),
-            ),
-            color = Color(Palette.MOUNTAIN_MID),
-        )
-        drawPath(
-            smoothClosed(
-                listOf(
-                    Offset(-w * 0.1f, h * (horizon + 0.03f)), Offset(w * 0.2f, h * (horizon - 0.01f)),
-                    Offset(w * 0.5f, h * (horizon + 0.04f)), Offset(w * 0.8f, h * (horizon - 0.01f)),
-                    Offset(w * 1.1f, h * (horizon + 0.03f)), Offset(w * 1.1f, h * (horizon + 0.14f)),
-                    Offset(-w * 0.1f, h * (horizon + 0.14f)),
-                ),
-            ),
-            color = Color(Palette.MOUNTAIN_NEAR),
-        )
-
-        // Back hills and the meadow.
-        drawPath(
-            smoothClosed(
-                listOf(
-                    Offset(-w * 0.1f, h * (horizon + 0.06f)), Offset(w * 0.3f, h * (horizon + 0.035f)),
-                    Offset(w * 0.7f, h * (horizon + 0.07f)), Offset(w * 1.1f, h * (horizon + 0.04f)),
-                    Offset(w * 1.1f, h * 1.1f), Offset(-w * 0.1f, h * 1.1f),
-                ),
-            ),
-            brush = Brush.verticalGradient(
-                listOf(Color(Palette.HILL_LIGHT), Color(Palette.HILL)),
-                startY = h * horizon,
-                endY = h,
+                endY = horizon + 0.04f * h,
             ),
         )
 
-        // Winding sand path: centre line plus half-width, widening towards the viewer.
-        val centre = listOf(
-            Offset(w * 0.50f, h * (horizon + 0.085f)), Offset(w * 0.44f, h * (horizon + 0.14f)),
-            Offset(w * 0.60f, h * (horizon + 0.22f)), Offset(w * 0.42f, h * (horizon + 0.33f)),
-            Offset(w * 0.46f, h * 1.02f),
-        )
-        val halfWidth = listOf(w * 0.035f, w * 0.05f, w * 0.08f, w * 0.13f, w * 0.30f)
-        val left = centre.mapIndexed { i, c -> Offset(c.x - halfWidth[i], c.y) }
-        val right = centre.mapIndexed { i, c -> Offset(c.x + halfWidth[i], c.y) }
-        drawPath(smoothClosed(left + right.reversed()), color = Color(Palette.SAND_DARK))
-        val innerLeft = centre.mapIndexed { i, c -> Offset(c.x - halfWidth[i] * 0.82f, c.y) }
-        val innerRight = centre.mapIndexed { i, c -> Offset(c.x + halfWidth[i] * 0.82f, c.y) }
-        drawPath(smoothClosed(innerLeft + innerRight.reversed()), color = Color(Palette.SAND))
+        sprite(cloudA, left = 0.08f * w, top = 0.05f * h, width = 0.30f * unit)
+        sprite(cloudB, left = 0.62f * w, top = 0.04f * h, width = 0.26f * unit)
+        sprite(cloudC, left = 0.56f * w, top = 0.25f * h, width = 0.20f * unit)
 
-        // Trees and bushes.
-        tree(w * 0.12f, h * (horizon + 0.17f), w * 0.30f)
-        tree(w * 0.88f, h * (horizon + 0.15f), w * 0.34f)
-        tree(w * 0.26f, h * (horizon + 0.09f), w * 0.18f)
-        tree(w * 0.76f, h * (horizon + 0.08f), w * 0.17f)
-        bush(w * 0.05f, h * 0.96f, w * 0.22f)
-        bush(w * 0.97f, h * 0.97f, w * 0.26f)
+        // Mountains: mirrored tiles so wide screens never show a seam or a gap.
+        val mScale = 0.17f * h / mountains.height
+        val tileW = mountains.width * mScale
+        val tileH = mountains.height * mScale
+        val mTop = horizon - tileH + 0.03f * h
+        val half = ceil(w / tileW / 2f).toInt() + 1
+        for (i in -half..half) {
+            val x = (w - tileW) / 2f + i * tileW
+            if (i % 2 == 0) {
+                drawFit(mountains, x, mTop, tileW, tileH)
+            } else {
+                withTransform({ scale(scaleX = -1f, scaleY = 1f, pivot = Offset(x + tileW / 2f, 0f)) }) {
+                    drawFit(mountains, x, mTop, tileW, tileH)
+                }
+            }
+        }
+
+        // Ground: covers the width and everything below the horizon, centred so the path stays central.
+        val gTop = horizon - 0.035f * h
+        val gScale = max(w / ground.width, (h - gTop) / ground.height)
+        drawFit(ground, (w - ground.width * gScale) / 2f, gTop, ground.width * gScale, ground.height * gScale)
+
+        // Trees, back to front, then rocks and bushes.
+        base(treeB, 0.30f * w, horizon + 0.12f * h, 0.19f * unit)
+        base(treeB, 0.80f * w, horizon + 0.115f * h, 0.18f * unit)
+        base(treeA, 0.12f * w, horizon + 0.19f * h, 0.31f * unit)
+        base(treeC, 0.88f * w, horizon + 0.17f * h, 0.36f * unit)
+        base(rocks, 0.70f * w, horizon + 0.33f * h, 0.14f * unit)
+        base(bushA, 0.07f * w, h * 1.0f, 0.28f * unit)
+        base(bushB, 0.95f * w, h * 1.0f, 0.31f * unit)
     }
 }
 
-private fun DrawScope.cloud(cx: Float, cy: Float, s: Float) {
-    val c = Color.White.copy(alpha = 0.92f)
-    drawCircle(c, 0.5f * s, Offset(cx - 0.55f * s, cy))
-    drawCircle(c, 0.7f * s, Offset(cx, cy - 0.25f * s))
-    drawCircle(c, 0.5f * s, Offset(cx + 0.6f * s, cy))
-    drawRoundRect(c, Offset(cx - 1.05f * s, cy - 0.05f * s), Size(2.1f * s, 0.55f * s), CornerRadius(0.27f * s))
+private fun DrawScope.drawFit(image: ImageBitmap, left: Float, top: Float, width: Float, height: Float) {
+    drawImage(
+        image = image,
+        dstOffset = IntOffset(left.roundToInt(), top.roundToInt()),
+        dstSize = IntSize(width.roundToInt(), height.roundToInt()),
+        filterQuality = FilterQuality.Medium,
+    )
 }
 
-private fun DrawScope.tree(x: Float, baseY: Float, s: Float) {
-    drawRoundRect(Color(Palette.TRUNK), Offset(x - 0.07f * s, baseY - 0.5f * s), Size(0.14f * s, 0.5f * s), CornerRadius(0.05f * s))
-    drawCircle(Color(Palette.TREE_DARK), 0.36f * s, Offset(x, baseY - 0.78f * s))
-    drawCircle(Color(Palette.TREE), 0.31f * s, Offset(x - 0.2f * s, baseY - 0.6f * s))
-    drawCircle(Color(Palette.TREE), 0.31f * s, Offset(x + 0.2f * s, baseY - 0.6f * s))
-    drawCircle(Color(Palette.TREE_LIGHT), 0.25f * s, Offset(x, baseY - 0.9f * s))
+/** Draws [image] with its top-left at ([left], [top]) scaled to [width], keeping its aspect ratio. */
+private fun DrawScope.sprite(image: ImageBitmap, left: Float, top: Float, width: Float) {
+    drawFit(image, left, top, width, width * image.height / image.width)
 }
 
-private fun DrawScope.bush(x: Float, y: Float, s: Float) {
-    drawCircle(Color(Palette.HILL_DARK), 0.5f * s, Offset(x, y))
-    drawCircle(Color(Palette.TREE), 0.42f * s, Offset(x - 0.35f * s, y + 0.1f * s))
-    drawCircle(Color(Palette.TREE_LIGHT), 0.3f * s, Offset(x + 0.1f * s, y - 0.2f * s))
-}
-
-/** Closed smooth shape through the control points (quadratic curves between midpoints). */
-private fun smoothClosed(points: List<Offset>): Path {
-    fun mid(a: Offset, b: Offset) = Offset((a.x + b.x) / 2f, (a.y + b.y) / 2f)
-    val path = Path()
-    val start = mid(points.last(), points.first())
-    path.moveTo(start.x, start.y)
-    for (i in points.indices) {
-        val p = points[i]
-        val m = mid(p, points[(i + 1) % points.size])
-        path.quadraticTo(p.x, p.y, m.x, m.y)
-    }
-    path.close()
-    return path
+/** Draws [image] standing on [baseY], horizontally centred on [centerX]. */
+private fun DrawScope.base(image: ImageBitmap, centerX: Float, baseY: Float, width: Float) {
+    val height = width * image.height / image.width
+    drawFit(image, centerX - width / 2f, baseY - height, width, height)
 }
