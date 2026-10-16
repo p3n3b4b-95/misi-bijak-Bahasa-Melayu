@@ -1,0 +1,156 @@
+name: Android CI
+
+# Gates G0-G3, G4 (unit), G6, G7, G8 and emulator evidence for UI-01. See docs/android/09-ci-gates.md.
+# CI is the only source of Android build truth (decision A8). Third-party actions are pinned by commit SHA.
+
+on:
+  push:
+    branches: ["feature/**", "claude/**"]
+    paths:
+      - "android/**"
+      - "tools/**"
+      - ".github/workflows/android-ci.yml"
+  pull_request:
+    paths:
+      - "android/**"
+      - "tools/**"
+      - ".github/workflows/android-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build, lint, unit tests, policy gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+
+      # G0: validates the checked-in Gradle wrapper jar against Gradle's published checksums.
+      - uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+        with:
+          validate-wrappers: true
+
+      - name: Install Android SDK components
+        run: |
+          set -euo pipefail
+          echo "ANDROID_HOME=${ANDROID_HOME:-<unset>}"
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --licenses > /dev/null || true
+          "$SDKMANAGER" "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Forbidden files (G8)
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '\.(jks|keystore|apk|aab|p12)$|(^|/)local\.properties$|google-services\.json$|(^|/)\.env'; then
+            echo "Forbidden file is tracked" >&2; exit 1
+          fi
+          echo "No signing material or binaries tracked."
+
+      - name: Lint (G2)
+        working-directory: android
+        run: ./gradlew --stacktrace lintDebug
+
+      - name: Unit tests (G4)
+        working-directory: android
+        run: ./gradlew --stacktrace testDebugUnitTest
+
+      - name: Assemble debug, instrumented-test and release APKs (G1)
+        working-directory: android
+        run: ./gradlew --stacktrace assembleDebug assembleDebugAndroidTest assembleRelease
+
+      - name: Offline and privacy manifest policy (G6)
+        run: node tools/check-apk-policy.js android/app/build/outputs/apk/release/app-release-unsigned.apk
+
+      - name: Dependency allowlist (G7)
+        working-directory: android
+        run: |
+          set -euo pipefail
+          ./gradlew -q :app:dependencies --configuration releaseRuntimeClasspath > build/release-deps.txt
+          node ../tools/check-dependencies.js build/release-deps.txt
+
+      - name: Collect APKs
+        if: always()
+        run: |
+          mkdir -p apks
+          cp android/app/build/outputs/apk/debug/app-debug.apk apks/ || true
+          cp android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk apks/ || true
+          cp android/app/build/outputs/apk/release/app-release-unsigned.apk apks/ || true
+          ls -l apks
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: android-apks
+          path: apks/
+          retention-days: 14
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: android-reports
+          path: |
+            android/app/build/reports/**
+            android/app/build/test-results/**
+            android/build/release-deps.txt
+          retention-days: 14
+
+  emulator:
+    name: Emulator tests and screenshots (${{ matrix.device }})
+    needs: build-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - device: phone
+            profile: pixel_6
+          - device: tablet
+            profile: pixel_c
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: android-apks
+          path: apks
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run instrumented tests and capture screenshots
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        with:
+          api-level: 34
+          target: default
+          arch: x86_64
+          profile: ${{ matrix.profile }}
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: bash tools/android-instrument.sh apks out
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: ui01-screenshots-${{ matrix.device }}
+          path: out/
+          retention-days: 30

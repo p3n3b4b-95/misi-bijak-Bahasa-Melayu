@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Original artwork derived from the project's own assets/logo.svg geometry (open book + star). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:translateX="-2"
+        android:translateY="2">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M54,54m-34,0a34,34 0,1 1,68 0a34,34 0,1 1,-68 0" />
+        <path
+            android:fillColor="#8A7BE8"
+            android:strokeWidth="2.5"
+            android:strokeColor="#27415F"
+            android:strokeLineJoin="round"
+            android:pathData="M34,48c8,-3 14,-1 20,4v27c-6,-5 -12,-7 -20,-4V48ZM74,48c-8,-3 -14,-1 -20,4v27c6,-5 12,-7 20,-4V48Z" />
+        <path
+            android:fillColor="#FFD75F"
+            android:strokeWidth="2"
+            android:strokeColor="#E4A93E"
+            android:strokeLineJoin="round"
+            android:pathData="M54,30l3.2,6.4 7.1,1 -5.1,5 1.2,7 -6.4,-3.3 -6.4,3.3 1.2,-7 -5.1,-5 7.1,-1L54,30Z" />
+    </group>
+</vector>

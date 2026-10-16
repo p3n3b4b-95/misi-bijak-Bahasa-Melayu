@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- System splash background; matches the top of the sky gradient in ui/theme/Palette.kt -->
+    <color name="splash_background">#59CBF3</color>
+    <color name="launcher_background">#59CBF3</color>
+</resources>

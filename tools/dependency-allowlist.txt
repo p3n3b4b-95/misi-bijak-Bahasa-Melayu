@@ -1,0 +1,8 @@
+# Gate G7 allowlist: group prefixes or exact group:artifact coordinates allowed at runtime.
+# Anything else fails CI until it is reviewed and added here on purpose (docs/android/09-ci-gates.md).
+androidx.*
+org.jetbrains.kotlin:*
+org.jetbrains.kotlinx:*
+org.jetbrains:annotations
+org.jspecify:jspecify
+com.google.guava:listenablefuture

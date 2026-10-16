@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Misi Bijak BM</string>
+    <string name="title_line1">Misi Bijak</string>
+    <string name="title_line2">Bahasa Melayu</string>
+    <string name="title_full">Misi Bijak Bahasa Melayu</string>
+
+    <string name="splash_loading">Memuatkan pengembaraan…</string>
+    <string name="splash_progress_description">Memuatkan pengembaraan</string>
+
+    <string name="menu_play">MULA</string>
+    <string name="menu_play_description">Mula bermain</string>
+    <string name="menu_settings">Tetapan</string>
+    <string name="menu_profile">Profil</string>
+    <string name="menu_exit">Keluar</string>
+
+    <string name="coming_soon_title">Akan datang</string>
+    <string name="coming_soon_body">Skrin ini belum tersedia. Ia akan hadir tidak lama lagi.</string>
+    <string name="coming_soon_ok">Baik</string>
+</resources>

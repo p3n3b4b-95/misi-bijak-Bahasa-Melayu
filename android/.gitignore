@@ -1,0 +1,18 @@
+# Build outputs and local state
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+captures/
+.cxx/
+.externalNativeBuild/
+
+# Never commit signing material or binaries (CI artefacts / draft releases only)
+*.jks
+*.keystore
+*.apk
+*.aab
+*.p12
+keystore.properties
+google-services.json
