@@ -7,10 +7,11 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.widthIn
@@ -94,7 +95,7 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                             Spacer(Modifier.height(Dimens.Space24))
                             LoadingBlock(progress, Modifier.fillMaxWidth(0.75f))
                         }
-                        BoyMascot(Modifier.weight(1f).heightIn(max = contentHeight * 0.7f))
+                        BoyMascot(Modifier.weight(1f).fillMaxHeight(0.85f))
                     }
                 } else {
                     Column(
@@ -102,10 +103,10 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                             .padding(horizontal = Dimens.Space24),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Spacer(Modifier.height(contentHeight * 0.07f))
+                        Spacer(Modifier.height(contentHeight * 0.14f))
                         GameTitle(line1Color = Color(Palette.TITLE_YELLOW), modifier = Modifier.fillMaxWidth(0.92f))
                         Spacer(Modifier.weight(1f))
-                        BoyMascot(Modifier.fillMaxWidth(0.5f))
+                        BoyMascot(Modifier.fillMaxWidth(0.62f).aspectRatio(100f / 125f))
                         Spacer(Modifier.weight(0.35f))
                         LoadingBlock(progress, Modifier.fillMaxWidth(0.66f))
                         Spacer(Modifier.height(contentHeight * 0.05f))

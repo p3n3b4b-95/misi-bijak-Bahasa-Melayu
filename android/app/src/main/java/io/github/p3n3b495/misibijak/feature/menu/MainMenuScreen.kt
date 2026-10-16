@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -85,7 +86,7 @@ fun MainMenuScreen(
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             GameTitle(line1Color = Color(Palette.TITLE_ORANGE), modifier = Modifier.fillMaxWidth(0.9f))
                             Spacer(Modifier.height(Dimens.Space16))
-                            CatMascot(Modifier.fillMaxWidth(0.4f))
+                            CatMascot(Modifier.fillMaxWidth(0.5f).aspectRatio(100f / 78f))
                         }
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             Actions(onPlay, onSettings, onProfile, onExit)
@@ -97,10 +98,10 @@ fun MainMenuScreen(
                             .padding(horizontal = Dimens.Space24),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-                        Spacer(Modifier.height(contentHeight * 0.04f))
+                        Spacer(Modifier.height(contentHeight * 0.12f))
                         GameTitle(line1Color = Color(Palette.TITLE_ORANGE), modifier = Modifier.fillMaxWidth(0.92f))
                         Spacer(Modifier.weight(1f))
-                        CatMascot(Modifier.fillMaxWidth(0.44f))
+                        CatMascot(Modifier.fillMaxWidth(0.55f).aspectRatio(100f / 78f))
                         Actions(onPlay, onSettings, onProfile, onExit)
                         Spacer(Modifier.height(contentHeight * 0.04f))
                     }

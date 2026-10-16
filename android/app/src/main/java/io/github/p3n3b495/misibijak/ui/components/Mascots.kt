@@ -1,7 +1,6 @@
 package io.github.p3n3b495.misibijak.ui.components
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
@@ -11,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import io.github.p3n3b495.misibijak.ui.theme.Palette
 
@@ -23,8 +23,9 @@ import io.github.p3n3b495.misibijak.ui.theme.Palette
 /** Waving boy with a cap and backpack (board: splash screen). Aspect 100:125. */
 @Composable
 fun BoyMascot(modifier: Modifier = Modifier) {
-    Canvas(modifier.aspectRatio(100f / 125f).clearAndSetSemantics { }) {
-        val u = size.width / 100f
+    Canvas(modifier.clearAndSetSemantics { }) {
+        val u = minOf(size.width / 100f, size.height / 125f)
+        translate(left = (size.width - 100f * u) / 2f, top = (size.height - 125f * u) / 2f) {
         val ink = Color(Palette.INK)
         val skin = Color(Palette.SKIN)
         val sw = 2.4f * u
@@ -62,30 +63,32 @@ fun BoyMascot(modifier: Modifier = Modifier) {
         drawRoundRect(ink, o(44f, 36f), Size(46f * u, 9f * u), CornerRadius(5f * u), style = Stroke(sw * 0.7f))
 
         // Face: eyes, cheeks, open smile.
-        drawOval(ink, o(39f, 50f), Size(7f * u, 9f * u))
-        drawOval(ink, o(55f, 50f), Size(7f * u, 9f * u))
-        drawCircle(Color.White, 1.6f * u, o(41f, 52f))
-        drawCircle(Color.White, 1.6f * u, o(57f, 52f))
-        drawCircle(Color(Palette.CHEEK).copy(alpha = 0.6f), 4.5f * u, o(34f, 62f))
-        drawCircle(Color(Palette.CHEEK).copy(alpha = 0.6f), 4.5f * u, o(66f, 62f))
+        drawOval(ink, o(39f, 47f), Size(7f * u, 9f * u))
+        drawOval(ink, o(55f, 47f), Size(7f * u, 9f * u))
+        drawCircle(Color.White, 1.6f * u, o(41f, 49f))
+        drawCircle(Color.White, 1.6f * u, o(57f, 49f))
+        drawCircle(Color(Palette.CHEEK).copy(alpha = 0.6f), 4.5f * u, o(33f, 58f))
+        drawCircle(Color(Palette.CHEEK).copy(alpha = 0.6f), 4.5f * u, o(67f, 58f))
         val mouth = Path().apply {
-            moveTo(41f * u, 63f * u)
-            quadraticTo(50f * u, 63f * u, 59f * u, 63f * u)
-            quadraticTo(57f * u, 76f * u, 50f * u, 76f * u)
-            quadraticTo(43f * u, 76f * u, 41f * u, 63f * u)
+            moveTo(42f * u, 59f * u)
+            quadraticTo(50f * u, 59f * u, 58f * u, 59f * u)
+            quadraticTo(56f * u, 69f * u, 50f * u, 69f * u)
+            quadraticTo(44f * u, 69f * u, 42f * u, 59f * u)
             close()
         }
         drawPath(mouth, Color(Palette.MOUTH))
-        drawCircle(Color(Palette.TONGUE), 3.6f * u, o(50f, 73f))
+        drawCircle(Color(Palette.TONGUE), 3.4f * u, o(50f, 66.5f))
         drawCircle(skin, 6.5f * u, o(92f, 53f)); drawCircle(ink, 6.5f * u, o(92f, 53f), style = Stroke(sw))
+        }
     }
 }
 
 /** Sitting ginger cat (board: main menu mascot, sits on top of the MULA button). Aspect 100:78. */
 @Composable
 fun CatMascot(modifier: Modifier = Modifier) {
-    Canvas(modifier.aspectRatio(100f / 78f).clearAndSetSemantics { }) {
-        val u = size.width / 100f
+    Canvas(modifier.clearAndSetSemantics { }) {
+        val u = minOf(size.width / 100f, size.height / 78f)
+        translate(left = (size.width - 100f * u) / 2f, top = (size.height - 78f * u) / 2f) {
         val ink = Color(Palette.INK)
         val orange = Color(Palette.CAT)
         val sw = 2.2f * u
@@ -146,6 +149,7 @@ fun CatMascot(modifier: Modifier = Modifier) {
         for (dy in listOf(-2f, 2f, 6f)) {
             drawLine(whisker, o(34f, 48f + dy * 0.5f), o(22f, 46f + dy), strokeWidth = 1.2f * u, cap = StrokeCap.Round)
             drawLine(whisker, o(66f, 48f + dy * 0.5f), o(78f, 46f + dy), strokeWidth = 1.2f * u, cap = StrokeCap.Round)
+        }
         }
     }
 }

@@ -6,12 +6,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.captureToImage
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.unit.Density
+import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
+import androidx.test.uiautomator.Until
+import java.io.File
 import io.github.p3n3b495.misibijak.feature.menu.MainMenuScreen
 import io.github.p3n3b495.misibijak.feature.splash.SplashScreen
 import io.github.p3n3b495.misibijak.ui.theme.MisiBijakTheme
@@ -66,24 +69,22 @@ class ScreenshotTest {
     }
 }
 
-/** Full-device screenshots (status bar included) of the real, running app. */
+/**
+ * Full-device screenshots (status bar included) of the real, running app. Uses UiAutomator rather
+ * than the Compose test rule, because the rule waits for the splash animation to finish and would
+ * only ever see the menu.
+ */
 class DeviceScreenshotTest {
-    @get:Rule
-    val rule = createAndroidComposeRule<MainActivity>()
-
     @Test
     fun captureRealAppSplashThenMenu() {
         val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
-        rule.waitUntil(timeoutMillis = 10_000) {
-            rule.onAllNodesWithContentDescriptionCount("Memuatkan pengembaraan") > 0 ||
-                rule.onAllNodesWithContentDescriptionCount("Mula bermain") > 0
+        device.pressHome()
+        ActivityScenario.launch(MainActivity::class.java).use {
+            val splashSeen = device.wait(Until.hasObject(By.desc("Memuatkan pengembaraan")), 8_000)
+            if (splashSeen) assertTrue(device.takeScreenshot(File(Shots.dir(), "10-device-splash.png")))
+            assertTrue(device.wait(Until.hasObject(By.desc("Mula bermain")), 10_000))
+            Thread.sleep(400)
+            assertTrue(device.takeScreenshot(File(Shots.dir(), "11-device-menu.png")))
         }
-        // The splash lasts about 1.8 s; if the activity was slow to start we may only catch the menu.
-        if (rule.onAllNodesWithContentDescriptionCount("Memuatkan pengembaraan") > 0) {
-            assertTrue(device.takeScreenshot(java.io.File(Shots.dir(), "10-device-splash.png")))
-        }
-        rule.waitUntil(timeoutMillis = 10_000) { rule.onAllNodesWithContentDescriptionCount("Mula bermain") > 0 }
-        rule.waitForIdle()
-        assertTrue(device.takeScreenshot(java.io.File(Shots.dir(), "11-device-menu.png")))
     }
 }

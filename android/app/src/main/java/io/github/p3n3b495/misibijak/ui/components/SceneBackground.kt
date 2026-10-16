@@ -26,7 +26,7 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
     Canvas(modifier.fillMaxSize().clearAndSetSemantics { }) {
         val w = size.width
         val h = size.height
-        val horizon = if (variant == SceneVariant.Splash) 0.50f else 0.47f
+        val horizon = if (variant == SceneVariant.Splash) 0.48f else 0.46f
 
         drawRect(
             brush = Brush.verticalGradient(
@@ -37,17 +37,17 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
             size = Size(w, h),
         )
 
-        cloud(w * 0.18f, h * 0.10f, w * 0.10f)
-        cloud(w * 0.82f, h * 0.07f, w * 0.085f)
+        cloud(w * 0.14f, h * 0.05f, w * 0.085f)
+        cloud(w * 0.86f, h * 0.045f, w * 0.07f)
         cloud(w * 0.70f, h * 0.30f, w * 0.07f)
 
         // Mountains, far to near.
         drawPath(
             smoothClosed(
                 listOf(
-                    Offset(-w * 0.1f, h * horizon + h * 0.02f), Offset(w * 0.08f, h * (horizon - 0.10f)),
-                    Offset(w * 0.25f, h * (horizon - 0.02f)), Offset(w * 0.48f, h * (horizon - 0.15f)),
-                    Offset(w * 0.72f, h * (horizon - 0.03f)), Offset(w * 0.92f, h * (horizon - 0.12f)),
+                    Offset(-w * 0.1f, h * horizon + h * 0.02f), Offset(w * 0.08f, h * (horizon - 0.15f)),
+                    Offset(w * 0.25f, h * (horizon - 0.02f)), Offset(w * 0.48f, h * (horizon - 0.21f)),
+                    Offset(w * 0.72f, h * (horizon - 0.03f)), Offset(w * 0.92f, h * (horizon - 0.17f)),
                     Offset(w * 1.1f, h * horizon + h * 0.02f), Offset(w * 1.1f, h * (horizon + 0.10f)),
                     Offset(-w * 0.1f, h * (horizon + 0.10f)),
                 ),
@@ -57,8 +57,8 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
         drawPath(
             smoothClosed(
                 listOf(
-                    Offset(-w * 0.1f, h * horizon + h * 0.04f), Offset(w * 0.14f, h * (horizon - 0.07f)),
-                    Offset(w * 0.34f, h * (horizon + 0.01f)), Offset(w * 0.62f, h * (horizon - 0.09f)),
+                    Offset(-w * 0.1f, h * horizon + h * 0.04f), Offset(w * 0.14f, h * (horizon - 0.11f)),
+                    Offset(w * 0.34f, h * (horizon + 0.01f)), Offset(w * 0.62f, h * (horizon - 0.14f)),
                     Offset(w * 0.85f, h * (horizon + 0.01f)), Offset(w * 1.1f, h * (horizon - 0.04f)),
                     Offset(w * 1.1f, h * (horizon + 0.12f)), Offset(-w * 0.1f, h * (horizon + 0.12f)),
                 ),
@@ -95,11 +95,11 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
 
         // Winding sand path: centre line plus half-width, widening towards the viewer.
         val centre = listOf(
-            Offset(w * 0.50f, h * (horizon + 0.05f)), Offset(w * 0.44f, h * (horizon + 0.12f)),
+            Offset(w * 0.50f, h * (horizon + 0.085f)), Offset(w * 0.44f, h * (horizon + 0.14f)),
             Offset(w * 0.60f, h * (horizon + 0.22f)), Offset(w * 0.42f, h * (horizon + 0.33f)),
             Offset(w * 0.46f, h * 1.02f),
         )
-        val halfWidth = listOf(w * 0.012f, w * 0.03f, w * 0.07f, w * 0.13f, w * 0.30f)
+        val halfWidth = listOf(w * 0.035f, w * 0.05f, w * 0.08f, w * 0.13f, w * 0.30f)
         val left = centre.mapIndexed { i, c -> Offset(c.x - halfWidth[i], c.y) }
         val right = centre.mapIndexed { i, c -> Offset(c.x + halfWidth[i], c.y) }
         drawPath(smoothClosed(left + right.reversed()), color = Color(Palette.SAND_DARK))

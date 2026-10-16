@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,7 +14,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import io.github.p3n3b495.misibijak.R
 import io.github.p3n3b495.misibijak.ui.theme.Palette
 
@@ -24,6 +24,7 @@ import io.github.p3n3b495.misibijak.ui.theme.Palette
 @Composable
 fun GameTitle(line1Color: Color, modifier: Modifier = Modifier) {
     val description = stringResource(R.string.title_full)
+    val density = LocalDensity.current
     BoxWithConstraints(
         modifier.semantics(mergeDescendants = true) {
             heading()
@@ -31,20 +32,22 @@ fun GameTitle(line1Color: Color, modifier: Modifier = Modifier) {
         },
     ) {
         val unit = (maxWidth.value / 8.4f).coerceIn(24f, 60f)
+        // dp -> sp through the density so the logo does not grow with the user's font size.
+        fun logoSp(dp: Float) = with(density) { dp.dp.toSp() }
         Column(
             modifier = Modifier.fillMaxWidth().clearAndSetSemantics { },
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             OutlinedText(
                 text = stringResource(R.string.title_line1),
-                fontSize = (unit * 0.86f).sp,
+                fontSize = logoSp(unit * 0.86f),
                 fillColor = line1Color,
                 outlineColor = Color(Palette.INK),
                 outlineWidth = (unit * 0.11f).dp,
             )
             OutlinedText(
                 text = stringResource(R.string.title_line2),
-                fontSize = unit.sp,
+                fontSize = logoSp(unit),
                 fillColor = Color.White,
                 outlineColor = Color(Palette.INK),
                 outlineWidth = (unit * 0.11f).dp,
