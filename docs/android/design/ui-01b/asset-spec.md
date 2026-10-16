@@ -95,7 +95,7 @@ The logo is a bitmap with a TalkBack description ("Misi Bijak Bahasa Melayu", he
 
 - **Format:** lossless WebP with alpha, single density in `res/drawable-nodpi` (sizes above are for 3× phone layouts; scenery is scaled up on tablets).
 - **Names:** lower-case, underscores, no spaces.
-- **Memory:** the Splash screen decodes about 15 MB of bitmaps (largest: `ground` 1800 × 975 and `mountains` 1800 × 570); total asset payload is about 1.1 MB on disk (19 files).
+- **Memory:** the Splash screen decodes about 22 MB of bitmaps (ground 7.0 MB, mountains 4.1 MB, logo 3.1 MB, Amir 2.8 MB, trees 2.5 MB, clouds 1.5 MB, bushes 0.8 MB, rocks 0.4 MB); total asset payload is about 1.1 MB on disk (19 files).
 - **Adding a pose:** add an SVG under `android/art/svg/`, add it to `ASSETS` in `tools/art/build_assets.py`, run the build, commit the SVG, WebP and refreshed manifest.
 - **Do not** paste board crops into the app.
 
