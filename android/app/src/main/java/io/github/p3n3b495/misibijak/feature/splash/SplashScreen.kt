@@ -1,5 +1,6 @@
 package io.github.p3n3b495.misibijak.feature.splash
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -93,7 +95,12 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             GameTitle(line1Color = Color(Palette.TITLE_YELLOW), modifier = Modifier.fillMaxWidth(0.9f))
                             Spacer(Modifier.height(Dimens.Space24))
-                            LoadingBlock(progress, Modifier.fillMaxWidth(0.75f))
+                            LoadingBlock(
+                                progress,
+                                Modifier.fillMaxWidth(0.75f)
+                                    .background(Color.White.copy(alpha = 0.8f), RoundedCornerShape(24.dp))
+                                    .padding(Dimens.Space16),
+                            )
                         }
                         BoyMascot(Modifier.weight(1f).fillMaxHeight(0.85f))
                     }

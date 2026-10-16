@@ -1,6 +1,7 @@
 package io.github.p3n3b495.misibijak.feature.menu
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExitToApp
@@ -89,7 +91,14 @@ fun MainMenuScreen(
                             CatMascot(Modifier.fillMaxWidth(0.5f).aspectRatio(100f / 78f))
                         }
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
-                            Actions(onPlay, onSettings, onProfile, onExit)
+                            // Panel keeps captions off the scenery (trees sit behind this column in landscape).
+                            Column(
+                                Modifier
+                                    .widthIn(max = 480.dp)
+                                    .background(Color.White.copy(alpha = 0.8f), RoundedCornerShape(32.dp))
+                                    .padding(Dimens.Space24),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                            ) { Actions(onPlay, onSettings, onProfile, onExit) }
                         }
                     }
                 } else {

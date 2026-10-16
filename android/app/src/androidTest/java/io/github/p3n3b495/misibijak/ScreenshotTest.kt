@@ -1,5 +1,6 @@
 package io.github.p3n3b495.misibijak
 
+import android.content.Intent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -9,7 +10,6 @@ import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.unit.Density
-import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
@@ -77,14 +77,18 @@ class ScreenshotTest {
 class DeviceScreenshotTest {
     @Test
     fun captureRealAppSplashThenMenu() {
-        val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val device = UiDevice.getInstance(instrumentation)
         device.pressHome()
-        ActivityScenario.launch(MainActivity::class.java).use {
-            val splashSeen = device.wait(Until.hasObject(By.desc("Memuatkan pengembaraan")), 8_000)
-            if (splashSeen) assertTrue(device.takeScreenshot(File(Shots.dir(), "10-device-splash.png")))
-            assertTrue(device.wait(Until.hasObject(By.desc("Mula bermain")), 10_000))
-            Thread.sleep(400)
-            assertTrue(device.takeScreenshot(File(Shots.dir(), "11-device-menu.png")))
+        val context = instrumentation.targetContext
+        context.startActivity(Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        // Frames across the first ~4 s show the system splash, the in-app splash and the hand-over to the menu.
+        for (frame in 0 until 10) {
+            device.takeScreenshot(File(Shots.dir(), "10-device-flow-%02d.png".format(frame)))
+            Thread.sleep(120)
         }
+        assertTrue(device.wait(Until.hasObject(By.desc("Mula bermain")), 10_000))
+        Thread.sleep(400)
+        assertTrue(device.takeScreenshot(File(Shots.dir(), "11-device-menu.png")))
     }
 }
