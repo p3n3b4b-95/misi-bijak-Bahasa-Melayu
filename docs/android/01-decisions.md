@@ -50,3 +50,22 @@ Evidence labels: VERIFIED / ASSUMED / UNKNOWN as in the Phase 1 report.
 | Q8 | Approve the privacy remediation tiers in 07 individually (T0 text-only, T1 client flag, T2 server-side) | 07 |
 | Q9 | Pedagogy sign-off: curated sentence distractors, varying hidden KVK letter, level difficulty parameters (P5), replacing poor pictures | M1, M4 |
 | Q10 | Who is the maintainer who will hold the release signing key, and where is it backed up? | M9 |
+
+## D. Tool and platform versions pinned in M0 (UI-01)
+
+Pinned in `android/gradle/libs.versions.toml` and the Gradle wrapper. "Looked up" = read from the vendor documentation page by a summarising fetch tool, not from the artifact repository itself (Google Maven was unreachable from this sandbox), so treat the vendor claims as ASSUMED until CI resolves the artifacts.
+
+| Item | Pinned | Basis |
+|---|---|---|
+| Android Gradle Plugin | 8.11.1 | **Not the newest.** The vendor page lists AGP 9.4.0 as current (needs Gradle 9.6). I chose 8.11.1 (Gradle 8.14.3, JDK 17) to avoid the AGP 9 migration (built-in Kotlin, new DSL) in the foundation milestone. Revisit at M1. CI resolving it is the evidence it exists |
+| Gradle | 8.14.3, wrapper with `distributionSha256Sum` (bd711022…3531, computed from the downloaded distribution) | VERIFIED locally; wrapper jar validated in CI by `setup-gradle` |
+| Kotlin / Compose compiler plugin | 2.2.21 (Maven plugin metadata lists 2.2.21 and newer 2.4.x) | VERIFIED listed on the plugin portal |
+| Compose BOM | 2025.10.00 | **Older than current** (vendor page shows Compose UI 1.12.x as of Oct 2026); chosen for stability with AGP 8.11 |
+| compileSdk / targetSdk | 36 | Vendor page: new apps and updates must target API 36 from 2026-08-31 (ASSUMED from the summary); AGP 8.11.1 supports 36 |
+| minSdk | 24 | PROVISIONAL (P1) — no device census |
+| JDK | 17 (Temurin in CI) | AGP 8.x requirement |
+| `applicationId` / namespace | `io.github.p3n3b495.misibijak` | **PROVISIONAL**: derived from the GitHub Pages domain with hyphens removed. Permanent once published, so the owner must confirm before any release (Q19) |
+| `versionName` / `versionCode` | 0.1.0 / 100 | P8 scheme |
+| Font | Nunito 700/800/900, SIL OFL 1.1 | VERIFIED licence metadata in the font files |
+
+Additional open question: **Q19** confirm or replace the application ID.
