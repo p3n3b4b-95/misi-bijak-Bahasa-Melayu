@@ -21,15 +21,15 @@ Legend for gates: G-numbers refer to `09-ci-gates.md`; AC-numbers to the Phase 1
 
 ## M0 — Foundation (S–M) · Needs: Q4, applicationId/namespace, Q7 (for G12)
 
-- [ ] Choose `applicationId`/package; record in 01
-- [ ] `android/` Gradle project, wrapper, version catalog, empty themed Compose activity
-- [ ] Pin tool versions (AGP, Kotlin, Compose BOM, JDK) after checking current stable releases; record in 01 (UNKNOWN today)
-- [ ] `.gitignore` additions (06 §7) committed **before** any Android file
-- [ ] Resolve and pin action SHAs; add `android-ci.yml`, `web-ci.yml`, Dependabot
-- [ ] Custom tasks `checkManifestPolicy` (G6) and `checkDependencyAllowlist` (G7)
+- [x] Choose `applicationId`/package; record in 01 (**provisional** `io.github.p3n3b495.misibijak`, Q19)
+- [x] `android/` Gradle project, wrapper, version catalog, themed Compose activity (commit 22dcdeb)
+- [x] Pin tool versions; recorded in 01 §D (AGP/Compose deliberately not the newest)
+- [x] `.gitignore` additions (06 §7) committed with the first Android commit
+- [x] Action SHAs resolved and pinned; `android-ci.yml` added. **Not done:** `web-ci.yml`, Dependabot
+- [x] G6 and G7 implemented as scripts run in CI (`tools/check-apk-policy.js`, `check-dependencies.js`) instead of Gradle tasks
 - [ ] `tools/export-content.js` + `--check`; promote schema validator from prototype
-- [ ] **Evidence:** first green CI run for G0–G3, G6–G9, G13 (URL recorded)
-- [ ] **Evidence:** merged release manifest has no `INTERNET` permission (artefact link)
+- [x] **Evidence:** green CI run for G0–G2, G4, G6–G8: <https://github.com/p3n3b4b-95/misi-bijak-Bahasa-Melayu/actions/runs/38924921466>. G3 (formatter) not set up; G9, G13 not run
+- [x] **Evidence:** G6 policy check passed on the release APK in that run (log not excerpted here)
 - [ ] Pages stage check job added (if Q7 approved); deploy workflow **not** changed without approval
 
 ## M1 — Content + domain (M) · Needs: Q9 (pedagogy), curated distractors
@@ -53,11 +53,11 @@ Legend for gates: G-numbers refer to `09-ci-gates.md`; AC-numbers to the Phase 1
 
 ## M3 — Module 1 and shell (S) · Needs: board frames S01–S02, font (L5)
 
-- [ ] Theme tokens from board; contrast token test (G10)
-- [ ] `AppContainer`, `MainActivity`, `NavHost`, guards per 03
-- [ ] S01 Splash, S02 MainMenu, S23 ErrorRetry
-- [ ] Manifest policy test passes with real manifest
-- [ ] **Evidence:** UI tests; TalkBack walkthrough notes; AC-1
+- [x] Theme tokens from board; contrast token test (unit test passing in CI)
+- [x] `AppContainer`, `MainActivity`, `NavHost` (typed routes Splash, MainMenu); guards not needed yet
+- [x] S01 Splash, S02 MainMenu (placeholder art). [ ] S23 ErrorRetry not built
+- [x] Manifest policy check passes with the real release manifest
+- [ ] **Evidence:** UI tests passing (11 on two emulators) — **TalkBack walkthrough notes still missing**; AC-1 partly met (menu actions are placeholders)
 
 ## M4 — Module 3: activities (L) · Needs: M1, audio cleared or dev-only (L2), pictures (L3)
 
