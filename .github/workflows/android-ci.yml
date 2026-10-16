@@ -64,15 +64,15 @@ jobs:
 
       - name: Lint (G2)
         working-directory: android
-        run: ./gradlew --stacktrace lintDebug
+        run: bash ../tools/ci-gradle.sh lint lintDebug
 
       - name: Unit tests (G4)
         working-directory: android
-        run: ./gradlew --stacktrace testDebugUnitTest
+        run: bash ../tools/ci-gradle.sh unit-tests testDebugUnitTest
 
       - name: Assemble debug, instrumented-test and release APKs (G1)
         working-directory: android
-        run: ./gradlew --stacktrace assembleDebug assembleDebugAndroidTest assembleRelease
+        run: bash ../tools/ci-gradle.sh assemble assembleDebug assembleDebugAndroidTest assembleRelease
 
       - name: Offline and privacy manifest policy (G6)
         run: node tools/check-apk-policy.js android/app/build/outputs/apk/release/app-release-unsigned.apk
