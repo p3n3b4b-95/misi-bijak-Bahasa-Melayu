@@ -25,9 +25,9 @@ import kotlin.math.roundToInt
 enum class SceneVariant { Splash, Menu }
 
 /**
- * The adventure meadow: sky, clouds, snow-capped mountains, rolling hills with a winding path,
- * trees, bushes and rocks. Built from the original sprite set in `res/drawable-nodpi`
- * (see docs/android/design/ui-01b/asset-spec.md) and laid out relative to the canvas, so it
+ * The adventure meadow: sky, clouds, hazy mountains, rolling hills with a winding path, a kampung
+ * hut, a signpost, trees, bushes and rocks. Built from the original sprite set in `res/drawable-nodpi`
+ * (see docs/android/design/ui-01c/asset-manifest.md) and laid out relative to the canvas, so it
  * adapts to phones, tablets and landscape. Decorative: hidden from TalkBack.
  */
 @Composable
@@ -43,6 +43,8 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
     val cloudB = ImageBitmap.imageResource(R.drawable.cloud_b)
     val cloudC = ImageBitmap.imageResource(R.drawable.cloud_c)
     val rocks = ImageBitmap.imageResource(R.drawable.rocks)
+    val hut = ImageBitmap.imageResource(R.drawable.hut)
+    val signpost = ImageBitmap.imageResource(R.drawable.signpost)
 
     Canvas(modifier.fillMaxSize().clearAndSetSemantics { }) {
         val w = size.width
@@ -67,7 +69,7 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
         sprite(cloudC, left = 0.56f * w, top = 0.25f * h, width = 0.20f * unit)
 
         // Mountains: mirrored tiles so wide screens never show a seam or a gap.
-        val mScale = 0.17f * h / mountains.height
+        val mScale = 0.20f * h / mountains.height
         val tileW = mountains.width * mScale
         val tileH = mountains.height * mScale
         val mTop = horizon - tileH + 0.03f * h
@@ -88,11 +90,13 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
         val gScale = max(w / ground.width, (h - gTop) / ground.height)
         drawFit(ground, (w - ground.width * gScale) / 2f, gTop, ground.width * gScale, ground.height * gScale)
 
-        // Trees, back to front, then rocks and bushes.
+        // Hut, trees (back to front), signpost, rocks and bushes.
+        base(hut, 0.20f * w, horizon + 0.085f * h, 0.30f * unit)
         base(treeB, 0.30f * w, horizon + 0.12f * h, 0.19f * unit)
         base(treeB, 0.80f * w, horizon + 0.115f * h, 0.18f * unit)
         base(treeA, 0.12f * w, horizon + 0.19f * h, 0.31f * unit)
         base(treeC, 0.88f * w, horizon + 0.17f * h, 0.36f * unit)
+        base(signpost, 0.68f * w, horizon + 0.14f * h, 0.13f * unit)
         base(rocks, 0.70f * w, horizon + 0.33f * h, 0.14f * unit)
         base(bushA, 0.07f * w, h * 1.0f, 0.28f * unit)
         base(bushB, 0.95f * w, h * 1.0f, 0.31f * unit)
