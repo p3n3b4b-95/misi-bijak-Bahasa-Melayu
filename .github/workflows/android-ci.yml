@@ -158,3 +158,47 @@ jobs:
           name: ui01-screenshots-${{ matrix.device }}
           path: out/
           retention-days: 30
+
+  publish-evidence:
+    name: Publish screenshots to the evidence branch
+    needs: emulator
+    if: always() && github.event_name == 'push' && github.repository == 'p3n3b4b-95/misi-bijak-Bahasa-Melayu'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write # pushes ONLY to the ci-evidence/ui-01 branch, never to main or the feature branch
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: ui01-screenshots-*
+          path: evidence-in
+
+      - name: Commit evidence to ci-evidence/ui-01
+        run: |
+          set -euo pipefail
+          BRANCH=ci-evidence/ui-01
+          DEST="run-${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null; then
+            git fetch --depth=1 origin "$BRANCH"
+            git checkout -B "$BRANCH" FETCH_HEAD
+          else
+            git checkout --orphan "$BRANCH"
+            git rm -rf . > /dev/null
+          fi
+          mkdir -p "$DEST"
+          for dir in evidence-in/*/; do
+            name="$(basename "$dir")"
+            mkdir -p "$DEST/$name"
+            cp -R "$dir"/screenshots "$DEST/$name/" 2>/dev/null || true
+            cp "$dir"/device.txt "$dir"/instrument.log "$DEST/$name/" 2>/dev/null || true
+          done
+          echo "Evidence for commit ${GITHUB_SHA} (workflow run ${GITHUB_RUN_ID}). Screenshots are PNG captures from emulators; no source code on this branch." > README.txt
+          git add README.txt "$DEST"
+          git commit -m "UI-01 evidence: run ${GITHUB_RUN_NUMBER} for ${GITHUB_SHA::7}"
+          git push origin "$BRANCH"
