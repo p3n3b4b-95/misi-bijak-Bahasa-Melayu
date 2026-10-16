@@ -57,7 +57,7 @@ fun RoundIconButton(
                 .border(3.dp, Color.White, CircleShape),
             contentAlignment = Alignment.Center,
         ) {
-            Icon(imageVector = icon, contentDescription = null, tint = Color.White, modifier = Modifier.size(34.dp))
+            Icon(imageVector = icon, contentDescription = null, tint = Color.White, modifier = Modifier.size(38.dp))
         }
         Spacer(Modifier.height(Dimens.Space4))
         Text(
@@ -65,7 +65,7 @@ fun RoundIconButton(
             color = Color(Palette.INK),
             fontFamily = Nunito,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 16.sp,
+            fontSize = 18.sp,
             textAlign = TextAlign.Center,
         )
     }

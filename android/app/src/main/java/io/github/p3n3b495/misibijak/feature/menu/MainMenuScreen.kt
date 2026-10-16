@@ -112,7 +112,7 @@ fun MainMenuScreen(
                         Spacer(Modifier.weight(1f))
                         CatMascot(Modifier.fillMaxWidth(0.55f).aspectRatio(100f / 78f))
                         Actions(onPlay, onSettings, onProfile, onExit)
-                        Spacer(Modifier.height(contentHeight * 0.04f))
+                        Spacer(Modifier.height(contentHeight * 0.09f))
                     }
                 }
             }

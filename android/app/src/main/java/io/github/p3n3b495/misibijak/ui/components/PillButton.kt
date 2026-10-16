@@ -76,7 +76,7 @@ fun PillButton(
                 color = labelColor,
                 fontFamily = Nunito,
                 fontWeight = FontWeight.Black,
-                fontSize = 32.sp,
+                fontSize = 36.sp,
                 modifier = Modifier.padding(horizontal = Dimens.Space16, vertical = Dimens.Space8),
             )
         }

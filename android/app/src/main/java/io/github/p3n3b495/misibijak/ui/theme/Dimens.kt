@@ -14,6 +14,6 @@ object Dimens {
     val MinTouchTarget = 48.dp
     val PrimaryButtonMinHeight = 72.dp
     val PrimaryButtonDepth = 6.dp
-    val IconButtonDiameter = 64.dp
+    val IconButtonDiameter = 72.dp
     val MaxContentWidth = 520.dp
 }
