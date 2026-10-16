@@ -59,6 +59,9 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
             ),
         )
 
+        // Solid meadow tone under the horizon so no sky can show between mountains and hills.
+        drawRect(Color(0xFF7FD44B), topLeft = Offset(0f, horizon), size = androidx.compose.ui.geometry.Size(w, h - horizon))
+
         sprite(cloudA, left = 0.08f * w, top = 0.05f * h, width = 0.30f * unit)
         sprite(cloudB, left = 0.62f * w, top = 0.04f * h, width = 0.26f * unit)
         sprite(cloudC, left = 0.56f * w, top = 0.25f * h, width = 0.20f * unit)
@@ -81,7 +84,7 @@ fun SceneBackground(variant: SceneVariant, modifier: Modifier = Modifier) {
         }
 
         // Ground: covers the width and everything below the horizon, centred so the path stays central.
-        val gTop = horizon - 0.035f * h
+        val gTop = horizon - 0.06f * h
         val gScale = max(w / ground.width, (h - gTop) / ground.height)
         drawFit(ground, (w - ground.width * gScale) / 2f, gTop, ground.width * gScale, ground.height * gScale)
 
