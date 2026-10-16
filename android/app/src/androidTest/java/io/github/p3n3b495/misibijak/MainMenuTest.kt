@@ -2,8 +2,8 @@ package io.github.p3n3b495.misibijak
 
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTouchHeightIsAtLeast
-import androidx.compose.ui.test.assertTouchWidthIsAtLeast
+import androidx.compose.ui.test.assertHeightIsAtLeast
+import androidx.compose.ui.test.assertWidthIsAtLeast
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -39,9 +39,9 @@ class MainMenuTest {
     @Test
     fun touchTargetsAreLargeEnough() {
         show()
-        rule.onNodeWithContentDescription("Mula bermain").assertTouchHeightIsAtLeast(64.dp).assertTouchWidthIsAtLeast(160.dp)
+        rule.onNodeWithContentDescription("Mula bermain").assertHeightIsAtLeast(64.dp).assertWidthIsAtLeast(160.dp)
         listOf("Tetapan", "Profil", "Keluar").forEach {
-            rule.onNodeWithText(it).assertTouchHeightIsAtLeast(48.dp).assertTouchWidthIsAtLeast(48.dp)
+            rule.onNodeWithText(it).assertHeightIsAtLeast(48.dp).assertWidthIsAtLeast(48.dp)
         }
     }
 
