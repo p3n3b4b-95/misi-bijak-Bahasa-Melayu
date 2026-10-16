@@ -9,8 +9,11 @@ log="$(mktemp)"
 status=${PIPESTATUS[0]}
 if [ "$status" -ne 0 ]; then
   echo
-  echo "=================== FAILURE SUMMARY ($label) ==================="
-  grep -nE '^(e|w): |: error:|Error:|FAILED|\* What went wrong|Execution failed|Unresolved|Could not' -A3 "$log" | grep -v 'at org\.gradle' | head -120
-  echo "=================== END SUMMARY ==================="
+  summary="${RUNNER_TEMP:-/tmp}/failure-summary.txt"
+  {
+    echo "=================== FAILURE SUMMARY ($label) ==================="
+    grep -nE '^(e|w): |: error:|Error:|FAILED|\* What went wrong|Execution failed|Unresolved|Could not' -A3 "$log" | grep -v 'at org\.gradle' | head -120
+    echo "=================== END SUMMARY ==================="
+  } | tee -a "$summary"
 fi
 exit "$status"

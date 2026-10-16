@@ -26,7 +26,8 @@ class ContrastTest {
         Pair("Settings glyph on button", Palette.WHITE, Palette.ICON_SETTINGS, 3.0),
         Pair("Profile glyph on button", Palette.WHITE, Palette.ICON_PROFILE, 3.0),
         Pair("Exit glyph on button", Palette.WHITE, Palette.ICON_EXIT, 3.0),
-        Pair("Loading bar fill against track", Palette.LOADING_FILL_BOTTOM, Palette.LOADING_TRACK, 3.0),
+        Pair("Loading bar fill (top) against track", Palette.LOADING_FILL_TOP, Palette.LOADING_TRACK, 3.0),
+        Pair("Loading bar fill (bottom) against track", Palette.LOADING_FILL_BOTTOM, Palette.LOADING_TRACK, 3.0),
     )
 
     @Test

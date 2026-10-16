@@ -43,8 +43,8 @@ object Palette {
     const val SAND: Long = 0xFFF3C96B
     const val SAND_DARK: Long = 0xFFE5AB45
     const val LOADING_FILL_TOP: Long = 0xFF5BD2FF
-    const val LOADING_FILL_BOTTOM: Long = 0xFF1E9BEA
-    const val LOADING_TRACK: Long = 0xFF4A5A70
+    const val LOADING_FILL_BOTTOM: Long = 0xFF35B0F5
+    const val LOADING_TRACK: Long = 0xFF3A4658
     const val ICON_SETTINGS: Long = 0xFF1F6FE0
     const val ICON_PROFILE: Long = 0xFF1F8A34
     const val ICON_EXIT: Long = 0xFF5B6FC4

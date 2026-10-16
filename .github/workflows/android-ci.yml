@@ -110,6 +110,10 @@ jobs:
             android/build/release-deps.txt
           retention-days: 14
 
+      - name: Failure summary (printed last so it is easy to find)
+        if: failure()
+        run: cat "$RUNNER_TEMP/failure-summary.txt" 2>/dev/null || echo "no summary recorded"
+
   emulator:
     name: Emulator tests and screenshots (${{ matrix.device }})
     needs: build-test
