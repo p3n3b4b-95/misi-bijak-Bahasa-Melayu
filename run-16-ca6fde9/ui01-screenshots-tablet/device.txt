@@ -1,0 +1,5 @@
+sdk=34
+release=14
+model=Android SDK built for x86_64
+Physical size: 2560x1800
+Physical density: 320
