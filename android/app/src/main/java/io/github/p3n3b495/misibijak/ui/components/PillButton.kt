@@ -20,10 +20,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -61,7 +59,6 @@ fun PillButton(
             Modifier
                 .matchParentSize()
                 .padding(top = depth)
-                .shadow(elevation = 8.dp, shape = CircleShape, clip = false)
                 .background(edge, CircleShape),
         )
         Box(
@@ -71,23 +68,17 @@ fun PillButton(
                 .offset(y = if (pressed) depth else 0.dp)
                 .defaultMinSize(minHeight = Dimens.PrimaryButtonMinHeight)
                 .clip(CircleShape)
-                .background(
-                    Brush.verticalGradient(0f to lerp(faceTop, Color.White, 0.45f), 0.45f to faceTop, 1f to faceBottom),
-                    CircleShape,
-                )
+                .background(Brush.verticalGradient(listOf(faceTop, faceBottom)), CircleShape)
                 .border(BorderStroke(3.dp, edge), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
             Box(
                 Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 6.dp, start = 24.dp, end = 24.dp)
+                    .padding(top = 7.dp, start = 28.dp, end = 28.dp)
                     .fillMaxWidth()
-                    .height(20.dp)
-                    .background(
-                        Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.75f), Color.White.copy(alpha = 0.05f))),
-                        CircleShape,
-                    ),
+                    .height(10.dp)
+                    .background(Color.White.copy(alpha = 0.38f), CircleShape),
             )
             Text(
                 text = label,

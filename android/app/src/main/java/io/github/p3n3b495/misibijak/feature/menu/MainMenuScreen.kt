@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,10 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.zIndex
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.p3n3b495.misibijak.R
-import io.github.p3n3b495.misibijak.ui.components.CatOverButton
+import io.github.p3n3b495.misibijak.ui.components.CatMascot
 import io.github.p3n3b495.misibijak.ui.components.ComingSoonDialog
 import io.github.p3n3b495.misibijak.ui.components.GameTitle
 import io.github.p3n3b495.misibijak.ui.components.PillButton
@@ -83,6 +85,8 @@ fun MainMenuScreen(
                     ) {
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             GameTitle(variant = TitleVariant.Menu, modifier = Modifier.fillMaxWidth(0.94f))
+                            Spacer(Modifier.height(Dimens.Space16))
+                            CatMascot(Modifier.fillMaxWidth(0.6f))
                         }
                         Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                             // Panel keeps captions off the scenery (trees sit behind this column in landscape).
@@ -92,7 +96,7 @@ fun MainMenuScreen(
                                     .background(Color.White.copy(alpha = 0.8f), RoundedCornerShape(32.dp))
                                     .padding(Dimens.Space24),
                                 horizontalAlignment = Alignment.CenterHorizontally,
-                            ) { Actions(onPlay, onSettings, onProfile, onExit, catWidthFraction = 0.56f) }
+                            ) { Actions(onPlay, onSettings, onProfile, onExit) }
                         }
                     }
                 } else {
@@ -104,7 +108,8 @@ fun MainMenuScreen(
                         Spacer(Modifier.height(contentHeight * 0.13f))
                         GameTitle(variant = TitleVariant.Menu, modifier = Modifier.fillMaxWidth(0.94f))
                         Spacer(Modifier.weight(1f))
-                        Actions(onPlay, onSettings, onProfile, onExit, catWidthFraction = 0.74f)
+                        CatMascot(Modifier.fillMaxWidth(0.74f).zIndex(1f))
+                        Actions(onPlay, onSettings, onProfile, onExit)
                         Spacer(Modifier.height(contentHeight * 0.07f))
                     }
                 }
@@ -114,23 +119,14 @@ fun MainMenuScreen(
 }
 
 @Composable
-private fun Actions(
-    onPlay: () -> Unit,
-    onSettings: () -> Unit,
-    onProfile: () -> Unit,
-    onExit: () -> Unit,
-    catWidthFraction: Float,
-) {
+private fun Actions(onPlay: () -> Unit, onSettings: () -> Unit, onProfile: () -> Unit, onExit: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        // The cat leans on MULA: body behind the button, paws in front (board screen 2).
-        CatOverButton(catWidthFraction = catWidthFraction) { placement ->
-            PillButton(
-                label = stringResource(R.string.menu_play),
-                contentDescription = stringResource(R.string.menu_play_description),
-                onClick = onPlay,
-                modifier = placement.fillMaxWidth(0.82f),
-            )
-        }
+        PillButton(
+            label = stringResource(R.string.menu_play),
+            contentDescription = stringResource(R.string.menu_play_description),
+            onClick = onPlay,
+            modifier = Modifier.fillMaxWidth(0.82f).offset(y = (-12).dp),
+        )
         Spacer(Modifier.height(Dimens.Space24))
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.Top) {
             RoundIconButton(R.drawable.icon_settings, stringResource(R.string.menu_settings), onSettings)

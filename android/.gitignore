@@ -16,6 +16,3 @@ captures/
 *.p12
 keystore.properties
 google-services.json
-
-# Python bytecode from the art generators
-__pycache__/

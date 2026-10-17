@@ -113,7 +113,7 @@ fun SplashScreen(progress: Float, modifier: Modifier = Modifier) {
                         Spacer(Modifier.height(contentHeight * 0.17f))
                         GameTitle(variant = TitleVariant.Splash, modifier = Modifier.fillMaxWidth(0.94f))
                         Spacer(Modifier.weight(1f))
-                        AmirMascot(Modifier.fillMaxWidth(0.76f))
+                        AmirMascot(Modifier.fillMaxWidth(0.80f))
                         Spacer(Modifier.weight(0.35f))
                         LoadingBlock(progress, Modifier.fillMaxWidth(0.66f))
                         Spacer(Modifier.height(contentHeight * 0.05f))

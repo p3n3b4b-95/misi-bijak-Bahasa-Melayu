@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800">
+  <!-- Orange-and-white cat mascot ("Kucing Bijak"): original character illustration, hand-authored SVG. -->
+  <defs>
+    <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB94F"/><stop offset="0.55" stop-color="#F8A02F"/><stop offset="1" stop-color="#EC8420"/>
+    </linearGradient>
+    <linearGradient id="furSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F29A2C"/><stop offset="0.5" stop-color="#FFB24A"/><stop offset="1" stop-color="#F29A2C"/>
+    </linearGradient>
+    <linearGradient id="white" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFEFD9"/>
+    </linearGradient>
+    <clipPath id="headClip"><path d="M250,300 C250,172 360,112 500,112 C640,112 750,172 750,300 C750,400 650,470 500,470 C350,470 250,400 250,300 Z"/></clipPath>
+  </defs>
+  <g stroke="#6B3410" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- tail: outline, fur, darker bands, white tip -->
+    <path d="M660,720 C810,730 880,620 846,490 C832,440 800,420 774,436" fill="none" stroke="#6B3410" stroke-width="100"/>
+    <path d="M660,720 C810,730 880,620 846,490 C832,440 800,420 774,436" fill="none" stroke="url(#furSide)" stroke-width="86"/>
+    <path d="M660,720 C810,730 880,620 846,490 C832,440 800,420 774,436" fill="none" stroke="#E07A18" stroke-width="86" stroke-dasharray="26 74" stroke-dashoffset="-30" opacity="0.8"/>
+    <path d="M834,470 C822,440 800,424 774,436" fill="none" stroke="#FFF7EA" stroke-width="86"/>
+
+    <!-- body: rounded haunches, white chest -->
+    <path d="M336,440 C292,520 256,640 276,740 C286,784 322,800 372,800 L628,800 C678,800 714,784 724,740 C744,640 708,520 664,440 Z" fill="url(#fur)"/>
+    <path d="M318,560 C296,610 288,670 296,730" fill="none" stroke="#D96A0F" stroke-width="9" opacity="0.7"/>
+    <path d="M682,560 C704,610 712,670 704,730" fill="none" stroke="#D96A0F" stroke-width="9" opacity="0.7"/>
+    <path d="M326,610 L366,630 M322,662 L364,676 M674,610 L634,630 M678,662 L636,676" fill="none" stroke="#D96A0F" stroke-width="9" opacity="0.7"/>
+    <path d="M436,470 C416,560 422,690 452,790 L548,790 C578,690 584,560 564,470 Z" fill="url(#white)" stroke="none"/>
+    <path d="M436,470 C416,560 422,690 452,790 M564,470 C584,560 578,690 548,790" fill="none" stroke="#6B3410" stroke-width="5" opacity="0.4"/>
+
+    <!-- paws -->
+    <path d="M350,750 C350,708 384,692 420,694 C456,694 474,716 470,756 C468,790 444,800 408,800 C372,800 350,790 350,750 Z" fill="url(#white)"/>
+    <path d="M530,756 C526,716 544,694 580,694 C616,692 650,708 650,750 C650,790 628,800 592,800 C556,800 532,790 530,756 Z" fill="url(#white)"/>
+    <path d="M392,740 L394,766 M420,738 L420,768 M446,742 L444,768 M554,742 L556,768 M580,738 L580,768 M606,740 L604,766" fill="none" stroke="#6B3410" stroke-width="5" opacity="0.5"/>
+
+    <!-- ears -->
+    <path d="M262,232 C250,150 262,92 296,64 C336,76 392,108 424,134 C362,142 306,176 262,232 Z" fill="url(#fur)"/>
+    <path d="M738,232 C750,150 738,92 704,64 C664,76 608,108 576,134 C638,142 694,176 738,232 Z" fill="url(#fur)"/>
+    <path d="M290,160 C292,122 304,98 320,92 C346,106 370,120 386,134 C346,138 314,148 290,160 Z" fill="#F7A6B0" stroke="none"/>
+    <path d="M710,160 C708,122 696,98 680,92 C654,106 630,120 614,134 C654,138 686,148 710,160 Z" fill="#F7A6B0" stroke="none"/>
+
+    <!-- head -->
+    <path d="M250,300 C250,172 360,112 500,112 C640,112 750,172 750,300 C750,400 650,470 500,470 C350,470 250,400 250,300 Z" fill="url(#fur)"/>
+    <g clip-path="url(#headClip)" stroke="none">
+      <!-- white blaze and cheeks -->
+      <path d="M500,100 C466,170 456,250 470,330 C478,372 486,392 500,404 C514,392 522,372 530,330 C544,250 534,170 500,100 Z" fill="url(#white)"/>
+      <ellipse cx="428" cy="404" rx="96" ry="66" fill="url(#white)"/>
+      <ellipse cx="572" cy="404" rx="96" ry="66" fill="url(#white)"/>
+      <ellipse cx="500" cy="440" rx="84" ry="44" fill="url(#white)"/>
+      <ellipse cx="355" cy="360" rx="40" ry="24" fill="#F9874F" opacity="0.55"/>
+      <ellipse cx="645" cy="360" rx="40" ry="24" fill="#F9874F" opacity="0.55"/>
+    </g>
+    <path d="M250,300 C250,172 360,112 500,112 C640,112 750,172 750,300 C750,400 650,470 500,470 C350,470 250,400 250,300 Z" fill="none"/>
+    <!-- forehead stripes -->
+    <path d="M452,150 C456,170 456,184 452,200 M418,168 C424,186 424,200 420,214 M548,150 C544,170 544,184 548,200 M582,168 C576,186 576,200 580,214" fill="none" stroke="#D96A0F" stroke-width="10"/>
+    <!-- cheek tufts -->
+    <path d="M252,350 L226,372 L262,382 M748,350 L774,372 L738,382" fill="none" stroke="#6B3410" stroke-width="6"/>
+
+    <!-- eyes: one open, one winking -->
+    <ellipse cx="402" cy="296" rx="38" ry="46" fill="#1B1210" stroke="none"/>
+    <circle cx="388" cy="276" r="13" fill="#fff" stroke="none"/><circle cx="416" cy="314" r="6" fill="#fff" stroke="none" opacity="0.9"/>
+    <path d="M360,284 C372,248 432,246 446,284" fill="none" stroke="#1B1210" stroke-width="8"/>
+    <path d="M556,300 C574,268 618,268 638,298" fill="none" stroke="#1B1210" stroke-width="13"/>
+    <path d="M636,296 L652,284 M628,286 L640,268" fill="none" stroke="#1B1210" stroke-width="6"/>
+
+    <!-- nose and mouth -->
+    <path d="M478,352 C490,344 510,344 522,352 C518,366 508,374 500,376 C492,374 482,366 478,352 Z" fill="#F28B9B"/>
+    <path d="M500,376 L500,394" fill="none" stroke="#6B3410" stroke-width="6"/>
+    <path d="M458,392 C470,418 494,416 500,394 C506,416 530,418 542,392" fill="none" stroke="#6B3410" stroke-width="7"/>
+    <path d="M482,408 C488,436 512,436 518,408 Z" fill="#F2606F" stroke="#6B3410" stroke-width="5"/>
+
+    <!-- whiskers -->
+    <g fill="none" stroke="#6B3410" stroke-width="4" opacity="0.55">
+      <path d="M338,372 L222,350 M338,388 L216,392 M346,404 L232,430"/>
+      <path d="M662,372 L778,350 M662,388 L784,392 M654,404 L768,430"/>
+    </g>
+  </g>
+</svg>
