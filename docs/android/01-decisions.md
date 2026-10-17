@@ -45,11 +45,32 @@ Evidence labels: VERIFIED / ASSUMED / UNKNOWN as in the Phase 1 report.
 | Q3 | Names, appearance, and diversity of the three characters | M6 |
 | Q4 | Target devices: oldest Android, RAM, phone/tablet, distribution (Play, school MDM, sideload) | P1, M8 |
 | Q5 | Who owns the audio recordings, and with what terms? | 08, M4, release |
-| Q6 | Which licence will the repository and its original assets carry? | 08 |
-| Q7 | May I stage Pages deployment as described in 06? (changes an existing workflow; needs separate approval) | 06 |
+| Q6 | Which licence will the repository and its original assets carry? **Status (UI-01C): pending owner confirmation; the artwork licence must be stated per file in the Asset Pack V2 manifest** | 08 |
+| Q7 | May I stage Pages deployment as described in 06? (changes an existing workflow; needs separate approval) **Status (UI-01C): Cowlick requires GitHub Pages isolation before any Android files are merged into `main`; no merge is planned now** | 06 |
 | Q8 | Approve the privacy remediation tiers in 07 individually (T0 text-only, T1 client flag, T2 server-side) | 07 |
 | Q9 | Pedagogy sign-off: curated sentence distractors, varying hidden KVK letter, level difficulty parameters (P5), replacing poor pictures | M1, M4 |
 | Q10 | Who is the maintainer who will hold the release signing key, and where is it backed up? | M9 |
+
+## E. UI-01C asset-track decisions (Cowlick)
+
+Recorded from the "UI-01C Asset Waiting Gate" and "Asset Wait Confirmed" instructions. They apply to the Splash and Main Menu visual refinement and the production Cowlick Asset Pack V2. They are **decisions about scope and process only**: no code, artwork or asset integration follows from them until Cowlick approves the intake report (see [`ASSET_INTAKE_CHECKLIST.md`](ASSET_INTAKE_CHECKLIST.md)).
+
+| ID | Decision | Consequence |
+|---|---|---|
+| UI-A | Cowlick owns all visual design and artwork production. Claude Code does Android implementation, integration, testing and validation only. Visual Design V2 and Blueprint V2 are design references, **not** production assets | No artwork, SVG, character, scenery, logo or icon is created by Claude Code. No cropping from flattened sheets |
+| UI-B | Safe revert accepted: commit `ca6fde9` restored the validated UI-01B baseline `3157037`; CI run 16 passed | Branch `feature/android-app` is kept unchanged while waiting for the pack |
+| UI-D1 | Top bar ("Adik Bijak / Tahap 1", stars, gear) **deferred until real profile data exists** | No `MenuTopBar` now. Avatar asset (A10) not required this round. The duplicate-settings question (D7) falls away |
+| UI-D2 | Tagline **approved:** "Belajar • Bermain, Maju Bersama!" | Wording follows this string (with the comma), not the V2 sheet's two-line variant without a comma. Plank art is supplied without text; the text is native |
+| UI-D3 | The Baca / Tulis / Faham signpost is **decorative only** | Boards are native text with no click action, hidden from TalkBack. Only the post and wood texture come from the pack |
+| UI-D5 | Poppins permitted **subject to licence verification** | Licence (expected SIL OFL 1.1) is verified at intake. Nothing is fetched or bundled before the intake report is approved |
+| UI-D6 | Pose mapping: **Splash** = Amir pointing + cat sitting. **Main Menu** = Amir cheering + cat beside Amir | Assets A3, A6 (splash) and A4, A7 (menu). Other poses not needed for these screens |
+| UI-D8 | Use **one consistent illustrated Malay village house** | A single house asset (A12) serves the menu; the V2 "Latar Kampung" and the small menu hut are to be unified by the pack |
+| UI-D9 | **Subtle** character, cloud and button animations, **respecting reduced-motion settings** | Implemented only after asset approval. Needs a motion spec (durations, amplitudes) from Cowlick and a reduced-motion check (system animator-duration scale = 0 and the accessibility "remove animations" setting) with an instrumented test |
+| UI-D10 | **Correct accessibility contrast issues** rather than copying inaccessible colours from the design board | Darker tile gradients, loading-bar track or fill, MULA label and caption chips are adjusted as in UI-01, each verified by `ContrastTest` and listed as a deviation in the integration report |
+| UI-D11 | Tablet and landscape layouts **remain provisional** until final artwork review | Existing UI-01B layouts stay; no tablet or landscape redesign is claimed |
+| UI-D12 | **Preserve** the existing art sources and build scripts; do not delete them | `android/art/`, `tools/art/` and the bitmaps they produce stay in the repository. The pack's intake and integration are additive |
+| UI-Bud | Provisional budgets: **debug APK 30 MB maximum; decoded bitmap memory 40 MB per screen** | Checked at intake (decoded memory from pixel sizes) and again after integration (APK size from the CI artifact). Today's CI APK artifact (debug, test and release APKs together) is about 15.7 MB (run 16) |
+| Locks | UI-02 locked · no merge to `main` · no APK release · no Supabase change · no production signing | Unchanged |
 
 ## D. Tool and platform versions pinned in M0 (UI-01)
 
