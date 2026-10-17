@@ -5,9 +5,10 @@ Documentation for the planned offline Android version of Misi Bijak Bahasa Melay
 | Read first | |
 |---|---|
 | [`PHASE2_REPORT.md`](PHASE2_REPORT.md) | Review summary, evidence table (VERIFIED / ASSUMED / UNKNOWN), blockers, questions |
-| [`ASSET_INTAKE_CHECKLIST.md`](ASSET_INTAKE_CHECKLIST.md) | **Latest (hold):** asset intake checklist and integration requirements; UI-01C waits for Cowlick's asset pack |
+| [`UI01C_REVERT_REPORT.md`](UI01C_REVERT_REPORT.md) | **Latest:** UI-01C hold and safe revert: Android code and resources restored to UI-01B (`3157037`), CI run 16 green, evidence |
+| [`ASSET_INTAKE_CHECKLIST.md`](ASSET_INTAKE_CHECKLIST.md) | Asset intake checklist (provisional, accepted) and integration requirements; UI-01C waits for Cowlick's asset pack |
 | [`UI01C_V2_ASSET_GAP_REPORT.md`](UI01C_V2_ASSET_GAP_REPORT.md) | Cowlick Visual Design V2: asset gap report and implementation mapping (analysis only, blocked on the asset pack) |
-| [`UI01C_REPORT.md`](UI01C_REPORT.md) | Earlier UI-01C pass (my painterly vector art; superseded by V2 as the target): UI-01C premium visual refinement: painterly art pass, CI run 15, before/after comparisons, honest gaps |
+| [`UI01C_REPORT.md`](UI01C_REPORT.md) | **Superseded; the code it describes is reverted** (see the revert report). Kept as history: the earlier UI-01C painterly art pass, CI run 15, before/after comparisons |
 | [`UI01B_REPORT.md`](UI01B_REPORT.md) | UI-01B visual refinement: original artwork, CI run 12, comparisons, honest differences |
 | [`UI01_REPORT.md`](UI01_REPORT.md) | M0 + UI-01 review with CI links, screenshots and visual differences |
 | [`PHASE1_RECON_REPORT.md`](PHASE1_RECON_REPORT.md) | Repository reconnaissance and first plan |
